@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Update Monitor{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-white mb-4">Update Monitor Information</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <form action="{% url 'store:update_monitor_view' monitor.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Monitor Name</label>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ monitor.name }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="size_in_inches" class="form-label">Size (inches)</label>
+                            <input type="text" name="size_in_inches" id="size_in_inches" class="form-control" value="{{ monitor.size_in_inches }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="resolution" class="form-label">Resolution</label>
+                            <input type="text" name="resolution" id="resolution" class="form-control" value="{{ monitor.resolution }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="refresh_rate" class="form-label">Refresh Rate (Hz)</label>
+                            <input type="text" name="refresh_rate" id="refresh_rate" class="form-control" value="{{ monitor.refresh_rate }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price (SAR)</label>
+                            <input type="number" step="0.01" name="price" id="price" class="form-control" value="{{ monitor.price }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Current Image</label><br>
+                            <img src="{{ monitor.image.url }}" alt="Current Image" class="img-thumbnail mb-2" width="200">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Change Image</label>
+                            <input type="file" name="image" id="image" class="form-control">
+                            <small class="form-text text-muted">Leave this empty to keep the current image.</small>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Update Monitor</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

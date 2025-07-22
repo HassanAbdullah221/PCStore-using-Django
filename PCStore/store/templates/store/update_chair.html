@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Update Gaming Chair{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-white mb-4">Update Gaming Chair Information</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <form action="{% url 'store:update_chair_view' chair.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Chair Name</label>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ chair.name }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="color" class="form-label">Color</label>
+                            <input type="text" name="color" id="color" class="form-control" value="{{ chair.color }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="material" class="form-label">Material</label>
+                            <input type="text" name="material" id="material" class="form-control" value="{{ chair.material }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="adjustable" class="form-label">Adjustable (Yes/No)</label>
+                            <input type="text" name="adjustable" id="adjustable" class="form-control" value="{{ chair.adjustable }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="max_weight" class="form-label">Max Weight (kg)</label>
+                            <input type="number" name="max_weight" id="max_weight" class="form-control" value="{{ chair.max_weight }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price (SAR)</label>
+                            <input type="number" step="0.01" name="price" id="price" class="form-control" value="{{ chair.price }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Current Image</label><br>
+                            <img src="{{ chair.image.url }}" alt="Current Image" class="img-thumbnail mb-2" width="200">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Change Image</label>
+                            <input type="file" name="image" id="image" class="form-control">
+                            <small class="form-text text-muted">Leave this empty to keep the current image.</small>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Update Chair</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}

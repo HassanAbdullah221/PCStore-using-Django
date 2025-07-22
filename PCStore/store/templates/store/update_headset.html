@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Update Headset{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-white mb-4">Update Headset Information</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <form action="{% url 'store:update_headset_view' headset.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Headset Name</label>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ headset.name }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="connection_type" class="form-label">Connection Type</label>
+                            <select name="connection_type" id="connection_type" class="form-control" required>
+                                <option value="" disabled {% if not headset.connection_type %}selected{% endif %}>Select connection type</option>
+                                <option value="USB" {% if headset.connection_type == "USB" %}selected{% endif %}>USB</option>
+                                <option value="Bluetooth" {% if headset.connection_type == "Bluetooth" %}selected{% endif %}>Bluetooth</option>
+                                <option value="Wireless" {% if headset.connection_type == "Wireless" %}selected{% endif %}>Wireless</option>
+                                <option value="Wired" {% if headset.connection_type == "Wired" %}selected{% endif %}>Wired</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="has_microphone" class="form-label">Has Microphone?</label>
+                            <select name="has_microphone" id="has_microphone" class="form-control" required>
+                                <option value="" disabled {% if not headset.has_microphone %}selected{% endif %}>Select an option</option>
+                                <option value="Yes" {% if headset.has_microphone == "Yes" %}selected{% endif %}>Yes</option>
+                                <option value="No" {% if headset.has_microphone == "No" %}selected{% endif %}>No</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price (SAR)</label>
+                            <input type="number" step="0.01" name="price" id="price" class="form-control" value="{{ headset.price }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Current Image</label><br>
+                            <img src="{{ headset.image.url }}" alt="Current Image" class="img-thumbnail mb-2" width="200">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Change Image</label>
+                            <input type="file" name="image" id="image" class="form-control">
+                            <small class="form-text text-muted">Leave this empty to keep the current image.</small>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Update Headset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Add New Monitor{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-white mb-4">Add New Monitor</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <form action="{% url 'store:add_monitor_view' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Monitor Name</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter monitor name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="size_in_inches" class="form-label">Size (in inches)</label>
+                            <select name="size_in_inches" id="size_in_inches" class="form-control" required>
+                                <option value="" disabled selected>Select size</option>
+                                <option value="22">22</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="27">27</option>
+                                <option value="32">32</option>
+                                <option value="34">34</option>
+                                <option value="49">49</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="resolution" class="form-label">Resolution</label>
+                            <select name="resolution" id="resolution" class="form-control" required>
+                                <option value="" disabled selected>Select resolution</option>
+                                <option value="1920x1080">1920x1080 (Full HD)</option>
+                                <option value="2560x1440">2560x1440 (QHD)</option>
+                                <option value="3840x2160">3840x2160 (4K UHD)</option>
+                                <option value="5120x1440">5120x1440 (Dual QHD)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="refresh_rate" class="form-label">Refresh Rate (Hz)</label>
+                            <select name="refresh_rate" id="refresh_rate" class="form-control" required>
+                                <option value="" disabled selected>Select refresh rate</option>
+                                <option value="60">60 Hz</option>
+                                <option value="75">75 Hz</option>
+                                <option value="120">120 Hz</option>
+                                <option value="144">144 Hz</option>
+                                <option value="165">165 Hz</option>
+                                <option value="240">240 Hz</option>
+                                <option value="360">360 Hz</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price (SAR)</label>
+                            <input type="number" step="0.01" name="price" id="price" class="form-control" placeholder="e.g. 1199.99" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Product Image</label>
+                            <input type="file" name="image" id="image" class="form-control" accept="image/*" required>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Add Monitor</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

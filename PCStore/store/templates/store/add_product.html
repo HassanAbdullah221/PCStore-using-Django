@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Add New Product{% endblock %}
+
+{% block content %}
+<style>
+    
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    .card img {
+        max-height: 150px;
+        object-fit: contain;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-center text-white mb-5">Choose a Product Category to Add</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+        <!-- Example Card -->
+        {% for product in products %}
+        <div class="col">
+            <div class="card h-100 text-center ">
+                <img src="{{ product.image_url }}" class="card-img-top p-3" alt="{{ product.name }}">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <a href="{% url product.url_name %}" class="btn btn-outline-dark mt-3">
+                        Add {{ product.name }}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+from django.urls import path
+from . import views
+
+
+app_name = 'store'
+
+urlpatterns = [
+    path('add_pc/', views.add_pc_view , name="add_pc_view"),
+    path("detail_pc/<pc_id>/" , views.pc_detail_view ,name="pc_detail_view" ),
+    path("update_pc/<pc_id>/" , views.update_pc_view ,name="update_pc_view" ),
+    path("delete_pc/<pc_id>/" , views.delete_pc_view ,name="delete_pc_view" ),
+    path('add_product/', views.add_product_view , name="add_product_view"),
+    path('add_monitor/', views.add_monitor_view , name="add_monitor_view"),
+    path('display_all/', views.display_all_view , name="display_all_view"),
+    path('update_monitor/<monitor_id>/', views.update_monitor_view , name="update_monitor_view"),
+    path('detail_monitor/<monitor_id>/', views.monitor_detail_view , name="monitor_detail_view"),
+    path("delete_monitor/<monitor_id>/" , views.delete_monitor_view ,name="delete_monitor_view" ),
+    path('update_mouse/<mouse_id>/', views.update_mouse_view , name="update_mouse_view"),
+    path('detail_mouse/<mouse_id>/', views.mouse_detail_view , name="mouse_detail_view"),
+    path("delete_mouse/<mouse_id>/" , views.delete_mouse_view ,name="delete_mouse_view" ),
+    path('add_mouse/', views.add_mouse_view , name="add_mouse_view"),
+    path('add_chair/', views.add_chair_view , name="add_chair_view"),
+    path('detail_chair/<chair_id>/', views.chair_detail_view , name="chair_detail_view"),
+    path("delete_chair/<chair_id>/" , views.delete_chair_view ,name="delete_chair_view" ),
+    path('update_chair/<chair_id>/', views.update_chair_view , name="update_chair_view"),
+    path('add_headset/', views.add_headset_view , name="add_headset_view"),
+    path('detail_headset/<headset_id>/', views.headset_detail_view , name="headset_detail_view"),
+    path("delete_headset/<headset_id>/" , views.delete_headset_view ,name="delete_headset_view" ),
+    path('update_headset/<headset_id>/', views.update_headset_view , name="update_headset_view"),
+    path('add_keyboard/', views.add_keyboard_view , name="add_keyboard_view"),
+    path('detail_keyboard/<keyboard_id>/', views.keyboard_detail_view , name="keyboard_detail_view"),
+    path("delete_keyboard/<keyboard_id>/" , views.delete_keyboard_view ,name="delete_keyboard_view" ),
+    path('update_keyboard/<keyboard_id>/', views.update_keyboard_view , name="update_keyboard_view"),
+    path('search/', views.search_view , name="search_view"),
+    path("pc_comment/<pc_id>/" , views.pc_comment_view , name="pc_comment_view" ),
+    path("monitor_comment/<monitor_id>/" , views.monitor_comment_view , name="monitor_comment_view" ),
+    path("mouse_comment/<mouse_id>/" , views.mouse_comment_view , name="mouse_comment_view" ),
+    path("headset_comment/<headset_id>/" , views.headset_comment_view , name="headset_comment_view" ),
+    path("keyboard_comment/<keyboard_id>/" , views.keyboard_comment_view , name="keyboard_comment_view" ),
+    path("chair_comment/<chair_id>/" , views.chair_comment_view , name="chair_comment_view" ),
+
+
+   
+]

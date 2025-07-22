@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}PCStore{% endblock %}</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  {% block style %}
+  {% endblock %}
+
+</head>
+
+<body style="background-color: #404161;">
+  
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{% url 'main:home_view' %}">PCStore</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 gap-3">
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-dark" href="{% url 'main:home_view' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-dark" href="{% url 'store:display_all_view' %}">All Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-dark" href="{% url 'store:add_product_view' %}">Add Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-dark" href="#">About</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle fw-semibold text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu text-center">
+            <li><a class="dropdown-item" href="{% url 'store:display_all_view' %}">PCs</a></li>
+            <li><a class="dropdown-item" href="{% url 'store:display_all_view' %}">Monitors</a></li>
+            <li><a class="dropdown-item" href="{% url 'store:display_all_view' %}">Keyboards</a></li>
+            <li><a class="dropdown-item" href="{% url 'store:display_all_view' %}">Mice</a></li>
+            <li><a class="dropdown-item" href="{% url 'store:display_all_view' %}">Headsets</a></li>
+            <li><a class="dropdown-item" href="{% url 'store:display_all_view' %}">Gaming Chairs</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<main class="container mt-4">
+  {% block content %}{% endblock %}
+</main>
+
+<div style="min-height: 50vh;">
+       </div>
+<div class="container">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+      <div class="col mb-3">
+        <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" fill="currentColor" class="bi bi-bootstrap" viewBox="0 0 16 16">
+                <path d="M5.062 12h3.475c1.804 0 2.888-.908 2.888-2.396 0-1.102-.761-1.916-1.904-2.034v-.1c.832-.14 1.482-.93 1.482-1.816 0-1.3-.955-2.11-2.542-2.11H5.062zm1.313-4.875V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762V8.162h1.822c1.236 0 1.887.463 1.887 1.348 0 .896-.627 1.377-1.811 1.377z"/>
+                <path d="M0 4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4zm4-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3z"/>
+              </svg>
+        </a>
+        <p class="text-white">&copy; 2024</p>
+      </div>
+  
+      <div class="col mb-3">
+  
+      </div>
+  
+      <div class="col mb-3">
+        <h5 class="text-white">Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="{% url 'main:home_view' %}" class="nav-link p-0 text-white">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+        </ul>
+      </div>
+  
+      <div class="col mb-3">
+        <h5 class="text-white">Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+        </ul>
+      </div>
+  
+      <div class="col mb-3">
+        <h5 class="text-white">Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+   
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

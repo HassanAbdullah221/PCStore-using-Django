@@ -1,0 +1,59 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Add New Keyboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-white mb-4">Add New Keyboard</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <form action="{% url 'store:add_keyboard_view' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Keyboard Name</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter keyboard name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Type</label>
+                            <select name="type" id="type" class="form-control" required>
+                                <option value="" disabled selected>Select keyboard type</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Regular">Regular</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="language" class="form-label">Language</label>
+                            <select name="language" id="language" class="form-control" required>
+                                <option value="" disabled selected>Select language</option>
+                                <option value="Arabic">Arabic</option>
+                                <option value="English">English</option>
+                                <option value="Both">Both</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price (SAR)</label>
+                            <input type="number" step="0.01" name="price" id="price" class="form-control" placeholder="e.g. 249.99" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Keyboard Image</label>
+                            <input type="file" name="image" id="image" class="form-control" accept="image/*" required>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">Add Keyboard</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}
