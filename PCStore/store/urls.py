@@ -38,7 +38,19 @@ urlpatterns = [
     path("headset_comment/<headset_id>/" , views.headset_comment_view , name="headset_comment_view" ),
     path("keyboard_comment/<keyboard_id>/" , views.keyboard_comment_view , name="keyboard_comment_view" ),
     path("chair_comment/<chair_id>/" , views.chair_comment_view , name="chair_comment_view" ),
-
+    path("chair_comment/<chair_id>/" , views.chair_comment_view , name="chair_comment_view" ),
+    path("admin/pcs/", views.admin_pc_view, name="admin_pc_view"),
+    path("admin/monitors/", views.admin_monitor_view, name="admin_monitor_view"),
+    path("admin/mouses/", views.admin_mouse_view, name="admin_mouse_view"),
+    path("admin/headsets/", views.admin_headset_view, name="admin_headset_view"),
+    path("admin/keyboards/", views.admin_keyboard_view, name="admin_keyboard_view"),
+    path("admin/chairs/", views.admin_chair_view, name="admin_chair_view"),
+    path('cart/', views.cart_view, name='cart_view'),
+    path('add-to-cart/<str:category>/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+    path('remove-from-cart/<str:category>/<int:product_id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('checkout/', views.checkout_view, name='checkout_view'),
+    path('process-payment/', views.process_payment, name='process_payment'),
+    path('payment-success/', views.payment_success, name='payment_success'),
 
    
 ]

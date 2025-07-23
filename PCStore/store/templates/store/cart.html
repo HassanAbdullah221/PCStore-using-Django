@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-warning">Your Cart</h2>
+    </div>
+
+    {% if items %}
+        <table class="table table-bordered table-hover bg-white align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-warning">Image</th>
+                    <th class="text-warning">Product</th>
+                    <th class="text-warning">Category</th>
+                    <th class="text-warning">Quantity</th>
+                    <th class="text-warning">Subtotal (SAR)</th>
+                    <th class="text-warning">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 80px; height: auto;" class="img-thumbnail">
+                    </td>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.subtotal }}</td>
+                    <td>
+                        <a href="{% url 'store:remove_from_cart' item.category item.product.id %}" class="btn btn-outline-danger btn-sm">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <h4 class="text-white fw-bold">Total: <span class="text-success">{{ total_price }} SAR</span></h4>
+            <a href="{% url 'store:checkout_view' %}" class="btn btn-warning fw-bold">
+                <i class="bi bi-credit-card-fill me-1"></i> Continue to Checkout
+            </a>
+        </div>
+    {% else %}
+        <p class="text-muted">Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}

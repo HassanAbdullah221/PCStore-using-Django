@@ -22,13 +22,14 @@ def add_pc_view(request: HttpRequest):
 
 def add_product_view(request: HttpRequest):
     products = [
-    {"name": "PC", "url_name": "store:add_pc_view", "image_url": "/static/images/Products/PC.png"},
-    {"name": "Monitor", "url_name": "store:add_monitor_view", "image_url": "/static/images/Products/monitor.png"},
-    {"name": "Keyboard", "url_name": "store:add_keyboard_view", "image_url": "/static/images/Products/keyboard.png"},
-    {"name": "Headset", "url_name": "store:add_headset_view", "image_url": "/static/images/Products/headset.png"},
-    {"name": "Mouse", "url_name": "store:add_mouse_view", "image_url": "/static/images/Products/mouse.png"},
-    {"name": "Gaming Chair", "url_name": "store:add_chair_view", "image_url": "/static/images/Products/chair.png"},
+    {"name": "PC", "url_name": "store:admin_pc_view", "image_url": "/static/images/Products/PC.png"},
+    {"name": "Monitor", "url_name": "store:admin_monitor_view", "image_url": "/static/images/Products/monitor.png"},
+    {"name": "Keyboard", "url_name": "store:admin_keyboard_view", "image_url": "/static/images/Products/keyboard.png"},
+    {"name": "Headset", "url_name": "store:admin_headset_view", "image_url": "/static/images/Products/headset.png"},
+    {"name": "Mouse", "url_name": "store:admin_mouse_view", "image_url": "/static/images/Products/mouse.png"},
+    {"name": "Gaming Chair", "url_name": "store:admin_chair_view", "image_url": "/static/images/Products/chair.png"},
     ]
+
     return render(request, "store/add_product.html", {"products": products})
 
 
@@ -473,4 +474,95 @@ def chair_comment_view(request: HttpRequest , chair_id: int ):
         )    
         new_comment.save()
         return redirect("store:chair_detail_view" , chair_id = chair_id)
+   
+def admin_pc_view(request):
+    pcs = PC.objects.all()
+    return render(request, 'store/pcs_admin.html', {'pcs': pcs})
+
+def admin_monitor_view(request):
+    monitors = Monitor.objects.all()
+    return render(request, 'store/monitors_admin.html', {'monitors': monitors})
+
+def admin_mouse_view(request):
+    mouses = Mouse.objects.all()
+    return render(request, 'store/mouses_admin.html', {'mouses': mouses})
+
+def admin_headset_view(request):
+    headsets = Headset.objects.all()
+    return render(request, 'store/headsets_admin.html', {'headsets': headsets})
+
+def admin_keyboard_view(request):
+    keyboards = Keyboard.objects.all()
+    return render(request, 'store/keyboards_admin.html', {'keyboards': keyboards})
+
+def admin_chair_view(request):
+    chairs = Chair.objects.all()
+    return render(request, 'store/chairs_admin.html', {'chairs': chairs})
+
+
+MODEL_MAP = {
+    "PC": PC,
+    "Monitor": Monitor,
+    "Keyboard": Keyboard,
+    "Mouse": Mouse,
+    "Headset": Headset,
+    "Chair": Chair,
+}
+def add_to_cart(request, category, product_id):
+    cart = request.session.get('cart', {})
+
+    if category not in cart:
+        cart[category] = {}
+
+    cart[category][str(product_id)] = cart[category].get(str(product_id), 0) + 1
+
+    request.session['cart'] = cart
+    return redirect('store:cart_view')
+ 
+def cart_view(request):
+    cart = request.session.get('cart', {})
+    items = []
+    total_price = 0
+
+    for category, products in cart.items():
+        model = MODEL_MAP.get(category)
+        if not model:
+            continue
+        for product_id, quantity in products.items():
+            product = model.objects.get(pk=product_id)
+            subtotal = product.price * quantity
+            items.append({
+                'product': product,
+                'quantity': quantity,
+                'subtotal': subtotal,
+                'category': category,
+            })
+            total_price += subtotal
+
+    return render(request, 'store/cart.html', {
+        'items': items,
+        'total_price': total_price
+    })
     
+def remove_from_cart(request, category, product_id):
+    cart = request.session.get('cart', {})
+    product_id = str(product_id)
+
+    if category in cart and product_id in cart[category]:
+        del cart[category][product_id]
+        if not cart[category]:  
+            del cart[category]
+
+    request.session['cart'] = cart
+    return redirect('store:cart_view')
+
+def checkout_view(request):
+    return render(request, 'store/checkout.html')
+
+def process_payment(request):
+    if request.method == 'POST':
+        return redirect('store:payment_success') 
+    return redirect('store:cart_view')
+
+def payment_success(request):
+    return render(request, 'store/payment_success.html')

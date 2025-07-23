@@ -6,25 +6,8 @@
 {% block content %}
 <div class="container mt-5">
 
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="deleteModalLabel">Delete PC</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete <strong>{{ pc.name }}</strong>?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a href="{% url 'store:delete_pc_view' pc.id %}" class="btn btn-danger">Delete</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="card shadow-sm bg-white p-4">
+  <div class="shadow-sm bg-white p-4 rounded">
     <div class="row align-items-center">
       <div class="col-md-6 mb-4">
         <img src="{{ pc.image.url }}" alt="{{ pc.name }}" class="img-fluid rounded shadow-sm">
@@ -39,18 +22,29 @@
         <p class="mb-1"><strong>RAM:</strong> {{ pc.ram }}</p>
         <p class="mb-1"><strong>Storage:</strong> {{ pc.storage }}</p>
         <p class="mb-3"><strong>Price:</strong> {{ pc.price }} SAR</p>
+<a href="{% url 'store:add_to_cart' 'PC' pc.id %}" class="btn btn-warning">
+    <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
+</a>
 
-        <div class="d-flex justify-content-start my-3">
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
-          <a href="{% url 'store:update_pc_view' pc.id %}" class="btn btn-success mx-2">Update</a>
-        </div>
       </div>
-    </div>
-  </div>
 
-</div>
-  <div class="mt-5">
-    <h4 class="text-center text-white mb-4">Write a Comment</h4>
+    </div>
+    <hr class="my-5">
+    <h4 class="mb-4 text-center text-dark">Comments</h4>
+
+    {% if comments %}
+    {% for comment in comments %}
+        <div class="mb-4 p-3 border rounded bg-white shadow-sm">
+            <strong>{{ comment.full_name }}</strong>
+            <small class="text-muted d-block">{{ comment.created_at}}</small>
+            <p class="mt-2">{{ comment.content }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p class="text-dark text-center">No comments yet. Be the first to comment!</p>
+{% endif %}
+ <div class="mt-5">
+    <h4 class="text-center text-dark mb-4">Write a Comment</h4>
 
     <form method="post" action="{% url 'store:pc_comment_view' pc.id %}" class="border rounded p-4 shadow-sm bg-light">
         {% csrf_token %}
@@ -66,29 +60,20 @@
         </div>
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary px-4">Submit</button>
         </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-dark">Send</button>
+</div>
     </form>
 </div>
+  </div>
 
-<hr class="my-5">
-
-<div class="mt-5">
-    <h4 class="mb-4 text-center text-white">Comments</h4>
-
-    {% if comments %}
-    {% for comment in comments %}
-        <div class="mb-4 p-3 border rounded bg-white shadow-sm">
-            <strong>{{ comment.full_name }}</strong>
-            <small class="text-muted d-block">{{ comment.created_at}}</small>
-            <p class="mt-2">{{ comment.content }}</p>
-        </div>
-    {% endfor %}
-{% else %}
-    <p class="text-white text-center">No comments yet. Be the first to comment!</p>
-{% endif %}
 
 </div>
+
+ 
+
+
 
     </div>
 </div>

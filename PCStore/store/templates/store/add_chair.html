@@ -4,11 +4,11 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center text-white mb-4">Add New Gaming Chair</h1>
+    <h1 class="text-center text-warning mb-4">Add New Gaming Chair</h1>
 
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-            <div class="card shadow">
+            <div class="bg-white rounded shadow">
                 <div class="card-body p-4">
                     <form action="{% url 'store:add_chair_view' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-success">Add Chair</button>
+                            <button type="submit" class="btn btn-dark">Add Chair</button>
                         </div>
                     </form>
                 </div>

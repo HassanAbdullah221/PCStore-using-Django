@@ -1,4 +1,4 @@
-{% extends "main/base.html" %}
+{% extends "main/admin_base.html" %}
 {% load static %}
 
 {% block title %}PCStore{% endblock %}
@@ -19,7 +19,6 @@
      <div class="container-fluid py-5">
   <div class="row align-items-center flex-column-reverse flex-lg-row">
     
-    <!-- Left Content -->
     <div class="col-lg-6 text-center text-lg-start px-5">
       <h1 class="text-warning fw-bold display-4">PC<span class="fw-bold display-4 text-white">Store</span></h1>
       <p class="text-light mt-3 mb-4">
@@ -27,7 +26,6 @@
         Build, upgrade, and elevate your setup with ease.
       </p>
 
-      <!-- Search Form -->
       <form method="get" action="{% url 'store:search_view' %}" class="row g-2 justify-content-center justify-content-lg-start">
         <div class="col-8 col-md-7">
           <input 

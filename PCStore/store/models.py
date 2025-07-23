@@ -1,15 +1,6 @@
 from django.db import models
 from datetime import datetime
-
-# Create your models here.
-
-# class CategoryChoices(models.TextChoices):
-#     PC = 'pc', 'PC'
-#     MONITOR = 'monitor', 'Monitor'
-#     MOUSE = 'mouse', 'Mouse'
-#     CHAIR = 'chair', 'Chair'
-#     HEADSET = 'headset', 'Headset'
-#     KEYBOARD = 'keyboard', 'Keyboard'
+from django.contrib.contenttypes.fields import GenericForeignKey
 
 
 class PC(models.Model):
@@ -76,37 +67,39 @@ class PC_comment(models.Model):
     pc = models.ForeignKey(PC, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
     content = models.TextField()
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class Monitor_comment(models.Model):
     monitor = models.ForeignKey(Monitor, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
     content = models.TextField()
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Mouse_comment(models.Model):
     mouse = models.ForeignKey(Mouse, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
     content = models.TextField()
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Chair_comment(models.Model):
     chair = models.ForeignKey(Chair, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
     content = models.TextField()
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class Headset_comment(models.Model):
     headset = models.ForeignKey(Headset, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
     content = models.TextField()
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Keyboard_comment(models.Model):
     keyboard = models.ForeignKey(Keyboard, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
     content = models.TextField()
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+

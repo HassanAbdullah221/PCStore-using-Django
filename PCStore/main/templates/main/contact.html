@@ -1,0 +1,48 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row align-items-center">
+    <div class="col-md-6 mb-3">
+      <h1 class="fw-bold text-warning">Contact us</h1>
+      <p class="text-white">
+        PC Store is your place to buy your new PC and have fun with your friends in gaming and other fields
+      </p>
+
+      <form action="{% url 'main:contact_view' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row mb-3">
+          <div class="col">
+            <label for="first_name" class="form-label text-white">First name</label>
+            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Hassan" required>
+          </div>
+          <div class="col">
+            <label for="last_name" class="form-label text-white">Last name</label>
+            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Abdullah" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label text-white">Email address</label>
+          <input type="email" class="form-control" name="email" id="email" placeholder="PCStore@gmail.com" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label text-white">Your message</label>
+          <textarea class="form-control" id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-warning w-100">Submit</button>
+      </form>
+    </div>
+
+    <div class="col-md-6 text-center">
+      <img src="{% static 'images/PCStore.png' %}" class="img-fluid rounded" alt="Orchid flower">
+    </div>
+  </div>
+</div>
+{% endblock %}

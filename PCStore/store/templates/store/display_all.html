@@ -3,82 +3,90 @@
 
 {% block title %}All Monitors{% endblock %}
 
-{% block content %}
-  <h1 class="text-white text-center m-5"> Products </h1>
+{% block content %}      
+
+    <div class="d-flex justify-content-center my-5">
+        <img src="{% static 'images/PCStore.png' %}" alt="PC Build" class="img-fluid w-50 my-5" style="max-width: 100%; height: auto;">
+
+    </div>
+  <h1 class="text-warning text-center m-5"> Products </h1>
 
     <div class="container">
     <div class="row">
       <div class="row mb-3">
   <div class="d-flex justify-content-between align-items-center">
     <div>
-       <h1 class="text-white text-left m-5"> PCs </h1>
+       <h1 class="text-warning text-left m-5"> PCs </h1>
     </div>
     
   </div>
 </div>
 
         {% if pcs %}
-            {% for pc in pcs %}
-            <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img src="{{ pc.image.url }}" class="card-img-top" alt="{{ pc.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ pc.name }}</h5>
+          {% for pc in pcs %}
+<div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
+    <div class="card w-100 d-flex flex-column">
+        <img src="{{ pc.image.url }}" class="card-img-top" alt="{{ pc.name }}">
+        
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ pc.name }}</h5>
+            <p class="card-text">
+                <strong>Category:</strong> {{ pc.category }}<br>
+                <strong>CPU:</strong> {{ pc.cpu }}<br>
+                <strong>GPU:</strong> {{ pc.gpu }}<br>
+                <strong>RAM:</strong> {{ pc.ram }}<br>
+                <strong>Storage:</strong> {{ pc.storage }}<br>
+                <strong>Price:</strong> {{ pc.price }} SAR
+            </p>
 
-                        <p class="card-text">
-                            <strong>Category:</strong> {{ pc.category }}<br>
-
-                            <strong>CPU:</strong> {{ pc.cpu }}<br>
-                            <strong>GPU:</strong> {{ pc.gpu }}<br>
-                            <strong>RAM:</strong> {{ pc.ram }}<br>
-                            <strong>Storage:</strong> {{ pc.storage }}<br>
-                            <strong>Price:</strong> {{ pc.price }} SAR
-                        </p>
-                        <div class="d-flex justify-content-center">
-                            <a href="{% url 'store:pc_detail_view' pc.id %}" class="btn btn-dark">View Details</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="mt-auto d-flex justify-content-center">
+                <a href="{% url 'store:pc_detail_view' pc.id %}" class="btn btn-dark">View Details</a>
             </div>
-            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+
         {% else %}
-          <p class="text-white">No PCs available.</p>
+          <p class="text-warning">No PCs available.</p>
         {% endif %}
     </div>
 <div class="row">
     <div class="row mb-3">
   <div class="d-flex justify-content-between align-items-center">
     <div>
-       <h1 class="text-white text-left m-5"> Monitors </h1>
+       <h1 class="text-warning text-left m-5"> Monitors </h1>
     </div>
     
   </div>
 </div>
 
     {% if monitors %}
-        {% for monitor in monitors %}
-        <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="card mx-auto" style="width: 18rem;">
-                <img src="{{ monitor.image.url }}" class="card-img-top" alt="{{ monitor.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ monitor.name }}</h5>
-                    <p class="card-text">
-                        <strong>Category:</strong> {{ monitor.category }}<br>
+       {% for monitor in monitors %}
+<div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
+    <div class="card w-100 d-flex flex-column">
+        <img src="{{ monitor.image.url }}" class="card-img-top" alt="{{ monitor.name }}">
+        
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ monitor.name }}</h5>
+            <p class="card-text">
+                <strong>Category:</strong> {{ monitor.category }}<br>
+                <strong>Size:</strong> {{ monitor.size_in_inches }} inch<br>
+                <strong>Resolution:</strong> {{ monitor.resolution }}<br>
+                <strong>Refresh Rate:</strong> {{ monitor.refresh_rate }} Hz<br>
+                <strong>Price:</strong> {{ monitor.price }} SAR
+            </p>
 
-                        <strong>Size:</strong> {{ monitor.size_in_inches }} inch<br>
-                        <strong>Resolution:</strong> {{ monitor.resolution }}<br>
-                        <strong>Refresh Rate:</strong> {{ monitor.refresh_rate }} Hz<br>
-                        <strong>Price:</strong> {{ monitor.price }} SAR
-                    </p>
-                    <div class="d-flex justify-content-center">
-                        <a href="{% url 'store:monitor_detail_view' monitor.id %}" class="btn btn-dark">View Details</a>
-                    </div>
-                </div>
+            <div class="mt-auto d-flex justify-content-center">
+                <a href="{% url 'store:monitor_detail_view' monitor.id %}" class="btn btn-dark">View Details</a>
             </div>
         </div>
-        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
     {% else %}
-        <p class="text-white">No monitors available.</p>
+        <p class="text-warning">No monitors available.</p>
     {% endif %}
 </div>
 
@@ -87,7 +95,7 @@
     <div class="row mb-3">
   <div class="d-flex justify-content-between align-items-center">
     <div>
-       <h1 class="text-white text-left m-5"> Mouses </h1>
+       <h1 class="text-warning text-left m-5"> Mouses </h1>
     </div>
     
   </div>
@@ -95,27 +103,29 @@
 
     {% if mouses %}
         {% for mouse in mouses %}
-        <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="card mx-auto" style="width: 18rem;">
-                <img src="{{ mouse.image.url }}" class="card-img-top" alt="{{ mouse.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ mouse.name }}</h5>
-                    <p class="card-text">
-                        <strong>Category:</strong> {{ mouse.category }}<br>
+       <div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
+    <div class="card w-100 d-flex flex-column">
+        <img src="{{ mouse.image.url }}" class="card-img-top" alt="{{ mouse.name }}">
+        
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ mouse.name }}</h5>
+            <p class="card-text">
+                <strong>Category:</strong> {{ mouse.category }}<br>
+                <strong>DPI:</strong> {{ mouse.dpi }}<br>
+                <strong>Connection:</strong> {{ mouse.connection_type }}<br>
+                <strong>Price:</strong> {{ mouse.price }} SAR
+            </p>
 
-                        <strong>DPI:</strong> {{ mouse.dpi }}<br>
-                        <strong>Connection:</strong> {{ mouse.connection_type }}<br>
-                        <strong>Price:</strong> {{ mouse.price }} SAR
-                    </p>
-                    <div class="d-flex justify-content-center">
-                        <a href="{% url 'store:mouse_detail_view' mouse.id %}" class="btn btn-dark">View Details</a>
-                    </div>
-                </div>
+            <div class="mt-auto d-flex justify-content-center">
+                <a href="{% url 'store:mouse_detail_view' mouse.id %}" class="btn btn-dark">View Details</a>
             </div>
         </div>
+    </div>
+</div>
+
         {% endfor %}
     {% else %}
-        <p class="text-white">No mouses available.</p>
+        <p class="text-warning">No mouses available.</p>
     {% endif %}
 </div>
 
@@ -124,7 +134,7 @@
     <div class="row mb-3">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <h1 class="text-white text-left m-5"> Gaming Chairs </h1>
+                <h1 class="text-warning text-left m-5"> Gaming Chairs </h1>
             </div>
            
         </div>
@@ -132,29 +142,31 @@
 
     {% if chairs %}
         {% for chair in chairs %}
-        <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="card mx-auto" style="width: 18rem;">
-                <img src="{{ chair.image.url }}" class="card-img-top" alt="{{ chair.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ chair.name }}</h5>
-                    <p class="card-text">
-                                        <strong>Category:</strong> {{ chair.category }}<br>
+        <div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
+    <div class="card w-100 d-flex flex-column">
+        <img src="{{ chair.image.url }}" class="card-img-top" alt="{{ chair.name }}">
+        
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ chair.name }}</h5>
+            <p class="card-text">
+                <strong>Category:</strong> {{ chair.category }}<br>
+                <strong>Color:</strong> {{ chair.color }}<br>
+                <strong>Material:</strong> {{ chair.material }}<br>
+                <strong>Adjustable:</strong> {{ chair.adjustable }}<br>
+                <strong>Max Weight:</strong> {{ chair.max_weight }} kg<br>
+                <strong>Price:</strong> {{ chair.price }} SAR
+            </p>
 
-                        <strong>Color:</strong> {{ chair.color }}<br>
-                        <strong>Material:</strong> {{ chair.material }}<br>
-                        <strong>Adjustable:</strong> {{ chair.adjustable }}<br>
-                        <strong>Max Weight:</strong> {{ chair.max_weight }} kg<br>
-                        <strong>Price:</strong> {{ chair.price }} SAR
-                    </p>
-                    <div class="d-flex justify-content-center">
-                        <a href="{% url 'store:chair_detail_view' chair.id %}" class="btn btn-dark">View Details</a>
-                    </div>
-                </div>
+            <div class="mt-auto d-flex justify-content-center">
+                <a href="{% url 'store:chair_detail_view' chair.id %}" class="btn btn-dark">View Details</a>
             </div>
         </div>
+    </div>
+</div>
+
         {% endfor %}
     {% else %}
-        <p class="text-white">No gaming chairs available.</p>
+        <p class="text-warning">No gaming chairs available.</p>
     {% endif %}
 </div>
 
@@ -162,72 +174,72 @@
     <div class="row mb-3">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <h1 class="text-white text-left m-5"> Headsets </h1>
+                <h1 class="text-warning text-left m-5"> Headsets </h1>
             </div>
           
         </div>
     </div>
 
-    {% if headsets %}
-        {% for headset in headsets %}
-        <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="card mx-auto" style="width: 18rem;">
-                <img src="{{ headset.image.url }}" class="card-img-top" alt="{{ headset.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ headset.name }}</h5>
-                    <p class="card-text">
-                                                <strong>Category:</strong> {{ headset.category }}<br>
-
-                        <strong>Connection:</strong> {{ headset.connection_type }}<br>
-                        <strong>Microphone:</strong> {{ headset.has_microphone }}<br>
-                        <strong>Price:</strong> {{ headset.price }} SAR
-                    </p>
-                    <div class="d-flex justify-content-center">
-                        <a href="{% url 'store:headset_detail_view' headset.id %}" class="btn btn-dark">View Details</a>
-                    </div>
+   {% if headsets %}
+    {% for headset in headsets %}
+    <div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
+        <div class="card w-100 d-flex flex-column">
+            <img src="{{ headset.image.url }}" class="card-img-top" alt="{{ headset.name }}">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ headset.name }}</h5>
+                <p class="card-text">
+                    <strong>Category:</strong> {{ headset.category }}<br>
+                    <strong>Connection:</strong> {{ headset.connection_type }}<br>
+                    <strong>Microphone:</strong> {{ headset.has_microphone }}<br>
+                    <strong>Price:</strong> {{ headset.price }} SAR
+                </p>
+                <div class="mt-auto d-flex justify-content-center">
+                    <a href="{% url 'store:headset_detail_view' headset.id %}" class="btn btn-dark">View Details</a>
                 </div>
             </div>
         </div>
-        {% endfor %}
-    {% else %}
-      <p class="text-white">No headsets available.</p>
-    {% endif %}
+    </div>
+    {% endfor %}
+{% else %}
+    <p class="text-warning">No headsets available.</p>
+{% endif %}
+
 </div>
 
 <div class="row">
     <div class="row mb-3">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <h1 class="text-white text-left m-5"> Keyboards </h1>
+                <h1 class="text-warning text-left m-5"> Keyboards </h1>
             </div>
           
         </div>
     </div>
 
-    {% if keyboards %}
-        {% for keyboard in keyboards %}
-        <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="card mx-auto" style="width: 18rem;">
-                <img src="{{ keyboard.image.url }}" class="card-img-top" alt="{{ keyboard.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ keyboard.name }}</h5>
-                    <p class="card-text">
-                            <strong>Category:</strong> {{ keyboard.category }}<br>
-
-                        <strong>Type:</strong> {{ keyboard.type }}<br>
-                        <strong>Language:</strong> {{ keyboard.language }}<br>
-                        <strong>Price:</strong> {{ keyboard.price }} SAR
-                    </p>
-                    <div class="d-flex justify-content-center">
-                        <a href="{% url 'store:keyboard_detail_view' keyboard.id %}" class="btn btn-dark">View Details</a>
-                    </div>
+  {% if keyboards %}
+    {% for keyboard in keyboards %}
+    <div class="col-lg-3 col-md-6 col-sm-12 my-3 d-flex">
+        <div class="card w-100 d-flex flex-column">
+            <img src="{{ keyboard.image.url }}" class="card-img-top" alt="{{ keyboard.name }}">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ keyboard.name }}</h5>
+                <p class="card-text">
+                    <strong>Category:</strong> {{ keyboard.category }}<br>
+                    <strong>Type:</strong> {{ keyboard.type }}<br>
+                    <strong>Language:</strong> {{ keyboard.language }}<br>
+                    <strong>Price:</strong> {{ keyboard.price }} SAR
+                </p>
+                <div class="mt-auto d-flex justify-content-center">
+                    <a href="{% url 'store:keyboard_detail_view' keyboard.id %}" class="btn btn-dark">View Details</a>
                 </div>
             </div>
         </div>
-        {% endfor %}
-    {% else %}
-        <p class="text-white">No keyboards available.</p>
-    {% endif %}
+    </div>
+    {% endfor %}
+{% else %}
+    <p class="text-warning">No keyboards available.</p>
+{% endif %}
+
 </div>
 
 {% endblock %}
