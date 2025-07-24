@@ -14,11 +14,13 @@
         <table class="table table-bordered table-hover bg-white">
             <thead class="table-dark">
                 <tr>
+                    <th class="text-warning">Image</th>
                     <th class="text-warning">Name</th>
                     <th class="text-warning">CPU</th>
                     <th class="text-warning">GPU</th>
                     <th class="text-warning">RAM</th>
                     <th class="text-warning">Storage</th>
+                    <th class="text-warning">Stock</th>
                     <th class="text-warning">Price (SAR)</th>
                     <th class="text-warning">Actions</th>
                 </tr>
@@ -26,15 +28,23 @@
             <tbody>
                 {% for pc in pcs %}
                 <tr>
+                    <td>
+                        {% if pc.image %}
+                            <img src="{{ pc.image.url }}" alt="{{ pc.name }}" width="80" height="60" class="img-thumbnail">
+                        {% else %}
+                            <span class="text-muted">No image</span>
+                        {% endif %}
+                    </td>
                     <td>{{ pc.name }}</td>
                     <td>{{ pc.cpu }}</td>
                     <td>{{ pc.gpu }}</td>
                     <td>{{ pc.ram }}</td>
                     <td>{{ pc.storage }}</td>
+                    <td>{{ pc.stock }}</td>
                     <td>{{ pc.price }}</td>
                     <td>
                         <a href="{% url 'store:pc_detail_view' pc.id %}" class="btn btn-outline-primary btn-sm">View</a>
-                        <a href="{% url 'store:update_pc_view' pc.id %}" class="btn btn-outline-warning btn-sm">Edit</a>
+                        <a href="{% url 'store:update_pc_view' pc.id %}" class="btn btn-outline-warning btn-sm">Update</a>
                         <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ pc.id }}">
                             Delete
                         </button>
@@ -45,7 +55,7 @@
                               <form method="POST" action="{% url 'store:delete_pc_view' pc.id %}">
                                 {% csrf_token %}
                                 <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="deleteModalLabel{{ pc.id }}">Delete {{ pc.name}}</h1>
+                                  <h1 class="modal-title fs-5" id="deleteModalLabel{{ pc.id }}">Delete {{ pc.name }}</h1>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">

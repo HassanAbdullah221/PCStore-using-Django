@@ -14,25 +14,33 @@
         <table class="table table-bordered table-hover bg-white">
             <thead class="table-dark">
                 <tr>
+                    <th class="text-warning">Image</th>
                     <th class="text-warning">Name</th>
                     <th class="text-warning">Resolution</th>
-                    <th class="text-warning">Size</th>
                     <th class="text-warning">Refresh Rate</th>
                     <th class="text-warning">Price (SAR)</th>
+                    <th class="text-warning">Stock</th>
                     <th class="text-warning">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for monitor in monitors %}
                 <tr>
+                    <td>
+                        {% if monitor.image %}
+                            <img src="{{ monitor.image.url }}" alt="{{ monitor.name }}" class="img-thumbnail" width="80" height="60">
+                        {% else %}
+                            <span class="text-muted">No image</span>
+                        {% endif %}
+                    </td>
                     <td>{{ monitor.name }}</td>
                     <td>{{ monitor.resolution }}</td>
-                    <td>{{ monitor.size }}</td>
                     <td>{{ monitor.refresh_rate }}</td>
                     <td>{{ monitor.price }}</td>
+                    <td>{{ monitor.stock }}</td>
                     <td>
                         <a href="{% url 'store:monitor_detail_view' monitor.id %}" class="btn btn-outline-primary btn-sm">View</a>
-                        <a href="{% url 'store:update_monitor_view' monitor.id %}" class="btn btn-outline-warning btn-sm">Edit</a>
+                        <a href="{% url 'store:update_monitor_view' monitor.id %}" class="btn btn-outline-warning btn-sm">Update</a>
                         <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ monitor.id }}">
                             Delete
                         </button>

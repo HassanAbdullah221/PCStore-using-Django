@@ -4,7 +4,19 @@
 {% block title %}Search Products{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+</style>
+
+<div class="container mt-5 fade-in">
     
     <div class="d-flex justify-content-center my-5">
         <img src="{% static 'images/PCStore.png' %}" alt="PC Build" class="img-fluid w-50 my-5" style="max-width: 100%; height: auto;">
@@ -41,10 +53,10 @@
     {% if pcs or monitors or mouses or chairs or headsets or keyboards %}
 
     {% if pcs %}
-        <h2 class=" fw-bold text-warning my-5">PC Results: <span class="text-white fw-bold ">{{ pcs.count }}</span></h2>
+        <h2 class=" fw-bold text-warning my-5 fade-in">PC Results: <span class="text-white fw-bold ">{{ pcs.count }}</span></h2>
     {% endif %}
         <!-- PCs -->
-        <div class="row">
+        <div class="row fade-in">
 
             {% for pc in pcs %}
 <div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
@@ -73,12 +85,12 @@
 
         </div>
 {% if monitors %}
-        <h2 class=" fw-bold text-warning my-5">Monitor Results: <span class="text-white fw-bold ">{{ monitors.count }}</span></h2>
+        <h2 class=" fw-bold text-warning my-5 fade-in">Monitor Results: <span class="text-white fw-bold ">{{ monitors.count }}</span></h2>
 
 {% endif %}
 
         <!-- Monitors -->
-        <div class="row">
+        <div class="row fade-in">
 
            {% for monitor in monitors %}
 <div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
@@ -107,12 +119,12 @@
 
         
 {% if mouses %}
-            <h2 class=" fw-bold text-warning my-5">Mouse Results: <span class="text-white fw-bold ">{{ mouses.count }}</span></h2>
+            <h2 class=" fw-bold text-warning my-5 fade-in">Mouse Results: <span class="text-white fw-bold ">{{ mouses.count }}</span></h2>
 
 {% endif %}
 
         <!-- Mouses -->
-        <div class="row">
+        <div class="row fade-in">
             {% for mouse in mouses %}
            <div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
     <div class="card w-100 d-flex flex-column">
@@ -138,12 +150,12 @@
         </div>
 
 {% if chairs %}
-                <h2 class=" fw-bold text-warning my-5">Chair Results: <span class="text-white fw-bold ">{{ chairs.count }}</span></h2>
+                <h2 class=" fw-bold text-warning my-5 fade-in">Chair Results: <span class="text-white fw-bold ">{{ chairs.count }}</span></h2>
 
 {% endif %}
 
         <!-- Chairs -->
-        <div class="row">
+        <div class="row fade-in">
             {% for chair in chairs %}
            <div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
     <div class="card w-100 d-flex flex-column">
@@ -172,12 +184,12 @@
         </div>
 
 {% if headsets %}
-                <h2 class=" fw-bold text-warning my-5">Headset Results: <span class="text-white fw-bold ">{{ headsets.count }}</span></h2>
+                <h2 class=" fw-bold text-warning my-5 fade-in">Headset Results: <span class="text-white fw-bold ">{{ headsets.count }}</span></h2>
 
 {% endif %}
 
         <!-- Headsets -->
-        <div class="row">
+        <div class="row fade-in">
          
     {% for headset in headsets %}
     <div class="col-lg-4 col-md-6 col-sm-12 my-3 d-flex">
@@ -202,11 +214,11 @@
         </div>
 
 {% if keyboards %}
-                <h2 class=" fw-bold text-warning my-5">Keyboard Results: <span class="text-white fw-bold ">{{ keyboards.count }}</span></h2>
+                <h2 class=" fw-bold text-warning my-5 fade-in">Keyboard Results: <span class="text-white fw-bold ">{{ keyboards.count }}</span></h2>
 
 {% endif %}
         <!-- Keyboards -->
-        <div class="row">
+        <div class="row fade-in">
             <div class="col-12">
             </div>
             {% for keyboard in keyboards %}
@@ -231,7 +243,7 @@
         </div>
 
     {% else %}
-    <div class="text-center my-5">
+    <div class="text-center my-5 fade-in">
         <h4 class="text-muted">No results found for "{{ request.GET.search }}"</h4>
     </div>
     {% endif %}

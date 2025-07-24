@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid py-5 fade-in">
+  <div class="row align-items-center flex-column-reverse flex-lg-row">
+    
+    <div class="col-lg-6 text-center text-lg-start px-5">
+      <h1 class="text-warning fw-bold display-4">PC<span class="fw-bold display-4 text-white">Store</span></h1>
+      <h5 class="text-light mt-3 mb-4">
+        Register :
+      </h5>
+
+      <form method="post" action="{% url 'main:register_view' %}" class="row g-3 justify-content-center justify-content-lg-start">
+        {% csrf_token %}
+
+        <div class="col-12 col-md-10">
+          <input type="text" name="username" class="form-control" placeholder="Username" required>
+        </div>
+        
+        <div class="col-12 col-md-10">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
+        </div>
+
+        <div class="col-12 col-md-10">
+          <input type="password" name="password1" class="form-control" placeholder="Password" required>
+        </div>
+
+        <div class="col-12 col-md-10">
+          <input type="password" name="password2" class="form-control" placeholder="Confirm Password" required>
+        </div>
+
+        <div class="col-12 col-md-10">
+          <button type="submit" class="btn btn-warning w-100">Register</button>
+        </div>
+
+        {% if form.errors %}
+        <div class="col-12 col-md-10">
+          <div class="alert alert-danger mt-2 w-100">
+            {% for field in form %}
+              {% for error in field.errors %}
+                <div>{{ error }}</div>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <div>{{ error }}</div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </form>
+
+    </div>
+
+    <div class="col-lg-6 px-4 mb-4 mb-lg-0 text-center">
+      <img src="{% static 'images/PCStore.png' %}" alt="PC Build" class="img-fluid" style="max-width: 100%; height: auto;">
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

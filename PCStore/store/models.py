@@ -1,6 +1,4 @@
 from django.db import models
-from datetime import datetime
-from django.contrib.contenttypes.fields import GenericForeignKey
 
 
 class PC(models.Model):
@@ -12,6 +10,7 @@ class PC(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='PC')
     image = models.ImageField(upload_to="pc/" , default='images/1.jpeg')
+    stock = models.PositiveIntegerField(default=10)
 
 class Monitor(models.Model):
     name = models.CharField(max_length=100)
@@ -20,6 +19,7 @@ class Monitor(models.Model):
     refresh_rate = models.IntegerField()  
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='Monitor')
+    stock = models.PositiveIntegerField(default=10)
 
     image = models.ImageField(upload_to="monitor/", default='images/1.jpeg')
 
@@ -31,6 +31,7 @@ class Mouse(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='Mouse')
     image = models.ImageField(upload_to='mice/')
+    stock = models.PositiveIntegerField(default=10)
 
 class Chair(models.Model):
     name = models.CharField(max_length=100)
@@ -40,6 +41,7 @@ class Chair(models.Model):
     max_weight = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='Chair')
+    stock = models.PositiveIntegerField(default=10)
 
     image = models.ImageField(upload_to='gaming_chairs/')
     
@@ -50,6 +52,7 @@ class Headset(models.Model):
     has_microphone = models.CharField(max_length=3)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='Headset')
+    stock = models.PositiveIntegerField(default=10)
 
     image = models.ImageField(upload_to='headsets/')
 
@@ -61,6 +64,7 @@ class Keyboard(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='Keyboard')
     image = models.ImageField(upload_to='keyboards/')
+    stock = models.PositiveIntegerField(default=10)
 
 
 class PC_comment(models.Model):

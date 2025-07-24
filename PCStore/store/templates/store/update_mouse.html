@@ -4,11 +4,11 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center text-white mb-4">Update Mouse Information</h1>
+    <h1 class="text-center text-warning mb-4">Update Mouse Information</h1>
 
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-            <div class="card shadow">
+            <div class="bg-white rounded shadow">
                 <div class="card-body p-4">
                     <form action="{% url 'store:update_mouse_view' mouse.id %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -25,18 +25,23 @@
 
                         <div class="mb-3">
                           <label for="connection_type" class="form-label">Connection Type</label>
-    <select name="connection_type" id="connection_type" class="form-control" required>
-        <option value="" disabled>Select connection type</option>
-        <option value="USB" {% if mouse.connection_type == "USB" %}selected{% endif %}>USB</option>
-        <option value="Bluetooth" {% if mouse.connection_type == "Bluetooth" %}selected{% endif %}>Bluetooth</option>
-        <option value="Wireless" {% if mouse.connection_type == "Wireless" %}selected{% endif %}>Wireless</option>
-        <option value="Wired" {% if mouse.connection_type == "Wired" %}selected{% endif %}>Wired</option>
-    </select>
- </div>
+                          <select name="connection_type" id="connection_type" class="form-control" required>
+                              <option value="" disabled>Select connection type</option>
+                              <option value="USB" {% if mouse.connection_type == "USB" %}selected{% endif %}>USB</option>
+                              <option value="Bluetooth" {% if mouse.connection_type == "Bluetooth" %}selected{% endif %}>Bluetooth</option>
+                              <option value="Wireless" {% if mouse.connection_type == "Wireless" %}selected{% endif %}>Wireless</option>
+                              <option value="Wired" {% if mouse.connection_type == "Wired" %}selected{% endif %}>Wired</option>
+                          </select>
+                        </div>
 
                         <div class="mb-3">
                             <label for="price" class="form-label">Price (SAR)</label>
                             <input type="number" step="0.01" name="price" id="price" class="form-control" value="{{ mouse.price }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="stock" class="form-label">Stock</label>
+                            <input type="number" name="stock" id="stock" class="form-control" value="{{ mouse.stock }}" required>
                         </div>
 
                         <div class="mb-3">
@@ -51,7 +56,7 @@
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Update Mouse</button>
+                            <button type="submit" class="btn btn-dark">Update Mouse</button>
                         </div>
                     </form>
                 </div>

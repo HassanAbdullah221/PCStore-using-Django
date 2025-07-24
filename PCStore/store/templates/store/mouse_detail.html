@@ -18,6 +18,8 @@
 
         <p class="mb-1"><strong>DPI:</strong> {{ mouse.dpi }}</p>
         <p class="mb-1"><strong>Connection Type:</strong> {{ mouse.connection_type }}</p>
+               <p class="mb-1"><strong>In Stock:</strong> {{ mouse.stock }}</p>
+
         <p class="mb-3"><strong>Price:</strong> {{ mouse.price }} SAR</p>
            <a href="{% url 'store:add_to_cart' 'Mouse' mouse.id %}" class="btn btn-warning">
     <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart

@@ -15,7 +15,7 @@ def add_pc_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_pc.save()
-        return redirect('main:home_view')
+        return redirect('store:admin_pc_view')
     
     return render(request, "store/add_pc.html")
 
@@ -56,6 +56,8 @@ def update_pc_view(request: HttpRequest, pc_id: int):
         pc.gpu=request.POST["gpu"]
         pc.ram=request.POST["ram"]
         pc.storage=request.POST["storage"]
+        pc.stock=request.POST["stock"]
+
         pc.price=request.POST["price"]
         pc.price = Decimal(request.POST["price"])
 
@@ -63,7 +65,7 @@ def update_pc_view(request: HttpRequest, pc_id: int):
         
         pc.save()
         
-        return redirect('store:pc_detail_view' , pc_id = pc.id)
+        return redirect('store:admin_pc_view' )
     
     return render(request, "store/update_pc.html", {"pc": pc})
 
@@ -73,14 +75,14 @@ def delete_pc_view(request: HttpRequest , pc_id: int):
     pc = PC.objects.get(pk=pc_id)
 
     pc.delete()
-    return redirect('main:home_view')
+    return redirect('store:admin_pc_view')
 
 def delete_monitor_view(request: HttpRequest , monitor_id: int):
 
     monitor = Monitor.objects.get(pk=monitor_id)
 
     monitor.delete()
-    return redirect('main:home_view')
+    return redirect('store:admin_monitor_view')
 
 def display_all_view(request: HttpRequest):
     pcs = PC.objects.all()
@@ -112,7 +114,7 @@ def add_monitor_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_monitor.save()
-        return redirect('main:home_view')
+        return redirect('store:admin_monitor_view')
     
     return render(request, "store/add_monitor.html")
 
@@ -124,6 +126,8 @@ def update_monitor_view(request: HttpRequest, monitor_id: int):
         monitor.size_in_inches = request.POST["size_in_inches"]
         monitor.resolution = request.POST["resolution"]
         monitor.refresh_rate = request.POST["refresh_rate"]
+        monitor.stock=request.POST["stock"]
+
         monitor.price = Decimal(request.POST["price"])
 
         if "image" in request.FILES:
@@ -131,7 +135,7 @@ def update_monitor_view(request: HttpRequest, monitor_id: int):
         
         monitor.save()
 
-        return redirect('store:monitor_detail_view', monitor_id=monitor.id)
+        return redirect('store:admin_monitor_view')
     
     return render(request, "store/update_monitor.html", {"monitor": monitor})
 
@@ -153,7 +157,7 @@ def add_mouse_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_mouse.save()
-        return redirect('main:home_view')
+        return redirect('store:admin_mouse_view')
     
     return render(request, "store/add_mouse.html")
    
@@ -162,7 +166,7 @@ def delete_mouse_view(request: HttpRequest , mouse_id: int):
     mouse = Mouse.objects.get(pk=mouse_id)
 
     mouse.delete()
-    return redirect('main:home_view')
+    return redirect('store:admin_mouse_view')
 
 
 def mouse_detail_view(request: HttpRequest , mouse_id :int):
@@ -178,6 +182,8 @@ def update_mouse_view(request: HttpRequest, mouse_id: int):
     if request.method == "POST":
         mouse.name=request.POST["name"]
         mouse.dpi=request.POST["dpi"]
+        mouse.stock=request.POST["stock"]
+
         mouse.connection_type=request.POST["connection_type"]
         mouse.price=request.POST["price"]
         
@@ -186,7 +192,7 @@ def update_mouse_view(request: HttpRequest, mouse_id: int):
         
         mouse.save()
         
-        return redirect('store:mouse_detail_view', mouse_id=mouse.id)
+        return redirect('store:admin_mouse_view')
     
     return render(request, "store/update_mouse.html", {"mouse": mouse})
 
@@ -202,7 +208,7 @@ def add_chair_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_chair.save()
-        return redirect('main:home_view')
+        return redirect('store:admin_chair_view')
 
     return render(request, "store/add_chair.html")
 
@@ -218,7 +224,7 @@ def delete_chair_view(request: HttpRequest , chair_id: int):
     chair = Chair.objects.get(pk=chair_id)
 
     chair.delete()
-    return redirect('main:home_view')
+    return redirect('store:admin_chair_view')
 
 def update_chair_view(request: HttpRequest, chair_id: int):
     chair = Chair.objects.get( pk=chair_id)
@@ -229,13 +235,15 @@ def update_chair_view(request: HttpRequest, chair_id: int):
         chair.material = request.POST["material"]
         chair.adjustable = request.POST["adjustable"]
         chair.max_weight = request.POST["max_weight"]
+        chair.stock=request.POST["stock"]
+
         chair.price = request.POST["price"]
 
         if "image" in request.FILES:
             chair.image = request.FILES["image"]
 
         chair.save()
-        return redirect('store:chair_detail_view', chair_id=chair.id)
+        return redirect('store:admin_chair_view')
 
     return render(request, "store/update_chair.html", {"chair": chair})
 
@@ -250,7 +258,7 @@ def add_headset_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_headset.save()
-        return redirect('main:home_view')
+        return redirect('store:admin_headset_view')
     
     return render(request, "store/add_headset.html")
 
@@ -266,7 +274,7 @@ def delete_headset_view(request: HttpRequest , headset_id :int):
     headset = Headset.objects.get(pk=headset_id)
 
     headset.delete()
-    return redirect('main:home_view')
+    return redirect('store:admin_headset_view')
 
 
 
@@ -278,13 +286,15 @@ def update_headset_view(request: HttpRequest, headset_id: int):
         headset.name = request.POST["name"]
         headset.connection_type = request.POST["connection_type"]
         headset.has_microphone = request.POST["has_microphone"]
+        headset.stock=request.POST["stock"]
+
         headset.price = request.POST["price"]
 
         if "image" in request.FILES:
             headset.image = request.FILES["image"]
 
         headset.save()
-        return redirect('store:headset_detail_view', headset_id=headset.id)
+        return redirect('store:admin_headset_view')
 
     return render(request, "store/update_headset.html", {"headset": headset})
 
@@ -298,7 +308,7 @@ def add_keyboard_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_keyboard.save()
-        return redirect('main:home_view')
+        return redirect('store:admin_keyboard_view')
     
     return render(request, "store/add_keyboard.html")
 
@@ -310,13 +320,16 @@ def update_keyboard_view(request: HttpRequest, keyboard_id: int):
         keyboard.name = request.POST["name"]
         keyboard.type = request.POST["type"]
         keyboard.language = request.POST["language"]
+        keyboard.stock=request.POST["stock"]
+
         keyboard.price = request.POST["price"]
 
         if "image" in request.FILES:
             keyboard.image = request.FILES["image"]
 
+
         keyboard.save()
-        return redirect('store:keyboard_detail_view' , keyboard_id=keyboard.id)
+        return redirect('store:admin_keyboard_view' )
 
     return render(request, "store/update_keyboard.html", {"keyboard": keyboard})
 
@@ -325,7 +338,7 @@ def delete_keyboard_view(request: HttpRequest , keyboard_id :int):
     keyboard = Keyboard.objects.get(pk=keyboard_id)
 
     keyboard.delete()
-    return redirect('main:home_view')
+    return redirect('store:admin_keyboard_view')
 
 
 def keyboard_detail_view(request: HttpRequest , keyboard_id :int):
@@ -508,17 +521,29 @@ MODEL_MAP = {
     "Headset": Headset,
     "Chair": Chair,
 }
+
 def add_to_cart(request, category, product_id):
+    model = MODEL_MAP.get(category)
+    if not model:
+        return redirect('store:cart_view')
+
+    try:
+        product = model.objects.get(pk=product_id)
+    except model.DoesNotExist:
+        messages.error(request, "Product not found.")
+        return redirect('store:cart_view')
+
     cart = request.session.get('cart', {})
+    current_quantity = cart.get(category, {}).get(str(product_id), 0)
 
-    if category not in cart:
-        cart[category] = {}
+    if product.stock > current_quantity:
+        cart.setdefault(category, {})[str(product_id)] = current_quantity + 1
+        request.session['cart'] = cart
+    else:
+        messages.error(request, f"Only {product.stock} of {product.name} available in stock.")
 
-    cart[category][str(product_id)] = cart[category].get(str(product_id), 0) + 1
-
-    request.session['cart'] = cart
     return redirect('store:cart_view')
- 
+
 def cart_view(request):
     cart = request.session.get('cart', {})
     items = []
@@ -559,10 +584,157 @@ def remove_from_cart(request, category, product_id):
 def checkout_view(request):
     return render(request, 'store/checkout.html')
 
+# def process_payment(request):
+#     if request.method == 'POST':
+#         return redirect('store:payment_success') 
+#     return redirect('store:cart_view')
+from django.contrib import messages
+
 def process_payment(request):
     if request.method == 'POST':
-        return redirect('store:payment_success') 
+        cart = request.session.get('cart', {})
+
+        for category, products in cart.items():
+            model = MODEL_MAP.get(category)
+            if not model:
+                continue
+
+            for product_id, quantity in products.items():
+                try:
+                    product = model.objects.get(pk=product_id)
+
+                    if product.stock >= quantity:
+                        product.stock -= quantity
+                        product.save()
+                    else:
+                        messages.error(request, f"Not enough stock for {product.name}")
+                        return redirect('store:cart_view')
+
+                except model.DoesNotExist:
+                    messages.error(request, f"Product not found in category {category}")
+                    return redirect('store:cart_view')
+
+        # Clear the cart after successful purchase
+        request.session['cart'] = {}
+        return redirect('store:payment_success')
+
     return redirect('store:cart_view')
 
 def payment_success(request):
     return render(request, 'store/payment_success.html')
+
+
+def update_cart_quantity(request, category, product_id):
+    if request.method == 'POST':
+        change = int(request.POST.get('change', 0))  
+
+        cart = request.session.get('cart', {})
+        product_id = str(product_id)
+
+        if category in cart and product_id in cart[category]:
+            current_quantity = cart[category][product_id]
+            new_quantity = current_quantity + change
+
+            if new_quantity < 1:
+                return redirect('store:remove_from_cart', category=category, product_id=product_id)
+
+            cart[category][product_id] = new_quantity
+            request.session['cart'] = cart
+
+    return redirect('store:cart_view')
+
+from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from django.shortcuts import render, redirect
+
+from django.shortcuts import render, redirect
+
+def ask_view(request):
+    if 'chat_history' not in request.session:
+        request.session['chat_history'] = []
+
+    if request.method == 'POST':
+        question = request.POST.get('question', '').strip()
+        normalized_q = question.lower()
+
+        responses = [
+            (["ram", "memory"], 
+             "RAM (Random Access Memory) helps your PC run multiple tasks smoothly. "
+             "16GB is ideal for most users, while 32GB is better for gaming or editing."),
+
+            (["ssd", "solid state"], 
+             "An SSD (Solid State Drive) is fast storage for booting and loading files quickly. "
+             "NVMe SSDs like the Samsung 970 EVO or WD Black SN850 are top choices."),
+
+            (["gpu", "graphics card"], 
+             "A GPU (Graphics Processing Unit) handles visuals and gaming graphics. "
+             "Best options include NVIDIA RTX 4060–4080 or AMD RX 6700–7900 series."),
+
+            (["cpu", "processor"], 
+             "The CPU (Central Processing Unit) is your computer’s brain. "
+             "Intel i5/i7 or AMD Ryzen 5/7 (latest gen) provide excellent performance."),
+
+            (["storage"], 
+             "Storage saves your data and files. "
+             "A 1TB SSD is a good mix of speed and capacity for most users."),
+
+            (["gaming pc", "best pc for gaming", "pc build"], 
+             "A powerful gaming PC includes a strong GPU, fast CPU, and SSD. "
+             "Ideal setup: RTX 4070+, 16GB+ RAM, Ryzen 7 or i7 CPU, 1TB NVMe SSD."),
+
+            (["overclock"], 
+             "Overclocking boosts your CPU/GPU performance by increasing speed. "
+             "Use proper cooling and compatible motherboards (Z-series or X-series)."),
+
+            (["cooling", "fan", "temperature"], 
+             "PC cooling keeps your components from overheating. "
+             "Good options include air coolers (Noctua NH-D15) or liquid AIO coolers (NZXT Kraken)."),
+
+            (["psu", "power supply"], 
+             "The PSU delivers power to your PC parts. "
+             "Get an 80+ Bronze or better PSU with 650–750W for gaming PCs."),
+
+            (["monitor"], 
+             "Monitors display your PC output. "
+             "For gaming, 24–27 inch, 144Hz+ refresh rate, and 1ms response are ideal."),
+
+            (["motherboard"], 
+             "The motherboard connects all PC components. "
+             "Choose one based on CPU compatibility and features (e.g., B650 for Ryzen, Z790 for Intel)."),
+
+            (["mouse"], 
+             "A mouse controls your pointer and is essential for navigation. "
+             "Best for gaming: Logitech G502 or Razer DeathAdder. Wireless mice are great for productivity."),
+
+            (["keyboard"], 
+             "A keyboard lets you type and control your PC. "
+             "Mechanical keyboards with RGB (e.g., Keychron, Logitech G) are preferred by gamers and typists."),
+
+            (["headset", "headphones"], 
+             "Headsets provide sound and often include microphones. "
+             "For gaming, look for over-ear headsets like HyperX Cloud II or SteelSeries Arctis 7."),
+
+            (["chair", "gaming chair"], 
+             "Gaming chairs support your back during long sessions. "
+             "Top models include Secretlab Titan or Razer Iskur, offering ergonomic design and adjustability."),
+
+            (["pc", "computer"], 
+             "A PC (Personal Computer) is a machine for work, study, or gaming. "
+             "Choose a PC based on your needs—budget builds for basic use, gaming rigs for performance.")
+        ]
+
+        answer = "Sorry, I don't have an answer for that yet. Try asking about RAM, SSD, GPU, mouse, or gaming chairs."
+
+        for keywords, response in responses:
+            if any(keyword in normalized_q for keyword in keywords):
+                answer = response
+                break
+
+        request.session['chat_history'].append({'question': question, 'answer': answer})
+        request.session.modified = True
+        return redirect('store:ask_view')
+
+    return render(request, 'store/asks.html', {
+        'chat_history': request.session.get('chat_history', [])
+    })

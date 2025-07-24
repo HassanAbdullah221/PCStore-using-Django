@@ -18,6 +18,8 @@
 
         <p class="mb-1"><strong>Connection Type:</strong> {{ headset.connection_type }}</p>
         <p class="mb-1"><strong>Microphone:</strong> {{ headset.has_microphone }}</p>
+                <p class="mb-1"><strong>In Stock:</strong> {{ headset.stock }}</p>
+
         <p class="mb-3"><strong>Price:</strong> {{ headset.price }} SAR</p>
          <a href="{% url 'store:add_to_cart' 'Headset' headset.id %}" class="btn btn-warning">
     <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart

@@ -4,11 +4,11 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center text-white mb-4">Update Monitor Information</h1>
+    <h1 class="text-center text-warning mb-4">Update Monitor Information</h1>
 
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-            <div class="card shadow">
+            <div class="bg-white rounded shadow">
                 <div class="card-body p-4">
                     <form action="{% url 'store:update_monitor_view' monitor.id %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -39,6 +39,11 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="stock" class="form-label">Stock</label>
+                            <input type="number" name="stock" id="stock" class="form-control" value="{{ monitor.stock }}" required>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">Current Image</label><br>
                             <img src="{{ monitor.image.url }}" alt="Current Image" class="img-thumbnail mb-2" width="200">
                         </div>
@@ -50,7 +55,7 @@
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Update Monitor</button>
+                            <button type="submit" class="btn btn-dark">Update Monitor</button>
                         </div>
                     </form>
                 </div>

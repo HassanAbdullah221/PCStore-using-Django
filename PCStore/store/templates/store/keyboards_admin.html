@@ -14,23 +14,33 @@
         <table class="table table-bordered table-hover bg-white">
             <thead class="table-dark">
                 <tr>
+                    <th class="text-warning">Image</th>
                     <th class="text-warning">Name</th>
                     <th class="text-warning">Type</th>
                     <th class="text-warning">Language</th>
                     <th class="text-warning">Price (SAR)</th>
+                    <th class="text-warning">Stock</th>
                     <th class="text-warning">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for keyboard in keyboards %}
                 <tr>
+                    <td>
+                        {% if keyboard.image %}
+                            <img src="{{ keyboard.image.url }}" alt="{{ keyboard.name }}" class="img-thumbnail" width="80" height="60">
+                        {% else %}
+                            <span class="text-muted">No image</span>
+                        {% endif %}
+                    </td>
                     <td>{{ keyboard.name }}</td>
                     <td>{{ keyboard.type }}</td>
                     <td>{{ keyboard.language }}</td>
                     <td>{{ keyboard.price }}</td>
+                    <td>{{ keyboard.stock }}</td>
                     <td>
                         <a href="{% url 'store:keyboard_detail_view' keyboard.id %}" class="btn btn-outline-primary btn-sm">View</a>
-                        <a href="{% url 'store:update_keyboard_view' keyboard.id %}" class="btn btn-outline-warning btn-sm">Edit</a>
+                        <a href="{% url 'store:update_keyboard_view' keyboard.id %}" class="btn btn-outline-warning btn-sm">Update</a>
 
                         <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ keyboard.id }}">
                             Delete

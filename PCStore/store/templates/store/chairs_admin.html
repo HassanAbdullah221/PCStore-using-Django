@@ -14,27 +14,37 @@
         <table class="table table-bordered table-hover bg-white">
             <thead class="table-dark">
                 <tr>
+                    <th class="text-warning">Image</th>
                     <th class="text-warning">Name</th>
                     <th class="text-warning">Color</th>
                     <th class="text-warning">Material</th>
                     <th class="text-warning">Adjustable</th>
                     <th class="text-warning">Max Weight (kg)</th>
                     <th class="text-warning">Price (SAR)</th>
+                    <th class="text-warning">Stock</th>
                     <th class="text-warning">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for chair in chairs %}
                 <tr>
+                    <td>
+                        {% if chair.image %}
+                            <img src="{{ chair.image.url }}" alt="{{ chair.name }}" class="img-thumbnail" width="80" height="60">
+                        {% else %}
+                            <span class="text-muted">No image</span>
+                        {% endif %}
+                    </td>
                     <td>{{ chair.name }}</td>
                     <td>{{ chair.color }}</td>
                     <td>{{ chair.material }}</td>
                     <td>{{ chair.adjustable|yesno:"Yes,No" }}</td>
                     <td>{{ chair.max_weight }}</td>
                     <td>{{ chair.price }}</td>
+                    <td>{{ chair.stock }}</td>
                     <td>
                         <a href="{% url 'store:chair_detail_view' chair.id %}" class="btn btn-outline-primary btn-sm">View</a>
-                        <a href="{% url 'store:update_chair_view' chair.id %}" class="btn btn-outline-warning btn-sm">Edit</a>
+                        <a href="{% url 'store:update_chair_view' chair.id %}" class="btn btn-outline-warning btn-sm">Update</a>
 
                         <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ chair.id }}">
                             Delete

@@ -14,23 +14,33 @@
         <table class="table table-bordered table-hover bg-white">
             <thead class="table-dark">
                 <tr>
+                    <th class="text-warning">Image</th>
                     <th class="text-warning">Name</th>
                     <th class="text-warning">Connection Type</th>
                     <th class="text-warning">Microphone</th>
                     <th class="text-warning">Price (SAR)</th>
+                    <th class="text-warning">Stock</th>
                     <th class="text-warning">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for headset in headsets %}
                 <tr>
+                    <td>
+                        {% if headset.image %}
+                            <img src="{{ headset.image.url }}" alt="{{ headset.name }}" class="img-thumbnail" width="80" height="60">
+                        {% else %}
+                            <span class="text-muted">No image</span>
+                        {% endif %}
+                    </td>
                     <td>{{ headset.name }}</td>
                     <td>{{ headset.connection_type }}</td>
                     <td>{{ headset.has_microphone|yesno:"Yes,No" }}</td>
                     <td>{{ headset.price }}</td>
+                    <td>{{ headset.stock }}</td>
                     <td>
                         <a href="{% url 'store:headset_detail_view' headset.id %}" class="btn btn-outline-primary btn-sm">View</a>
-                        <a href="{% url 'store:update_headset_view' headset.id %}" class="btn btn-outline-warning btn-sm">Edit</a>
+                        <a href="{% url 'store:update_headset_view' headset.id %}" class="btn btn-outline-warning btn-sm">Update</a>
 
                         <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ headset.id }}">
                             Delete

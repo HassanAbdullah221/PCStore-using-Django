@@ -18,6 +18,8 @@
 
         <p class="mb-1"><strong>Type:</strong> {{ keyboard.type }}</p>
         <p class="mb-1"><strong>Language:</strong> {{ keyboard.language }}</p>
+               <p class="mb-1"><strong>In Stock:</strong> {{ keyboard.stock }}</p>
+
         <p class="mb-3"><strong>Price:</strong> {{ keyboard.price }} SAR</p>
         <a href="{% url 'store:add_to_cart' 'Keyboard' keyboard.id %}" class="btn btn-warning">
     <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart

@@ -20,6 +20,8 @@
         <p class="mb-1"><strong>Material:</strong> {{ chair.material }}</p>
         <p class="mb-1"><strong>Adjustable:</strong> {{ chair.adjustable }}</p>
         <p class="mb-1"><strong>Max Weight:</strong> {{ chair.max_weight }} kg</p>
+        <p class="mb-1"><strong>In Stock:</strong> {{ chair.stock }}</p>
+
         <p class="mb-3"><strong>Price:</strong> {{ chair.price }} SAR</p>
          <a href="{% url 'store:add_to_cart' 'Chair' chair.id %}" class="btn btn-warning">
     <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
