@@ -20,11 +20,9 @@ class Monitor(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='Monitor')
     stock = models.PositiveIntegerField(default=10)
-
     image = models.ImageField(upload_to="monitor/", default='images/1.jpeg')
 
 class Mouse(models.Model):
-   
     name = models.CharField(max_length=100)
     dpi = models.IntegerField()
     connection_type = models.CharField(max_length=20)
@@ -42,7 +40,6 @@ class Chair(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='Chair')
     stock = models.PositiveIntegerField(default=10)
-
     image = models.ImageField(upload_to='gaming_chairs/')
     
 class Headset(models.Model):
@@ -53,7 +50,6 @@ class Headset(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='Headset')
     stock = models.PositiveIntegerField(default=10)
-
     image = models.ImageField(upload_to='headsets/')
 
 

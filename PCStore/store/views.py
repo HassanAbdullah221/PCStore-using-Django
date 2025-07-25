@@ -2,6 +2,7 @@ from decimal import Decimal
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .models import *
+from django.contrib import messages
 
 def add_pc_view(request: HttpRequest):
     if request.method == "POST":
@@ -584,11 +585,6 @@ def remove_from_cart(request, category, product_id):
 def checkout_view(request):
     return render(request, 'store/checkout.html')
 
-# def process_payment(request):
-#     if request.method == 'POST':
-#         return redirect('store:payment_success') 
-#     return redirect('store:cart_view')
-from django.contrib import messages
 
 def process_payment(request):
     if request.method == 'POST':
@@ -614,7 +610,6 @@ def process_payment(request):
                     messages.error(request, f"Product not found in category {category}")
                     return redirect('store:cart_view')
 
-        # Clear the cart after successful purchase
         request.session['cart'] = {}
         return redirect('store:payment_success')
 
