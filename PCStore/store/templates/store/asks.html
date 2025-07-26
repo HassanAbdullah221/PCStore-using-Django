@@ -3,15 +3,22 @@
 
 {% block content %}
 <style>
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
 
-.fade-in {
-  animation: fadeIn 1s ease-out forwards;
-  opacity: 0; 
-}
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+  }
 </style>
 
 <div class="container mt-5 fade-in">
@@ -24,31 +31,32 @@
         <div class="card-body d-flex flex-column" style="height: 500px;">
           <div id="chat-box" class="overflow-auto mb-3 px-2 flex-grow-1">
             {% if chat_history %}
-              {% for chat in chat_history %}
-                <div class="mb-3">
-                  <div class="d-flex justify-content-end">
-                    <div class="bg-warning text-dark rounded p-2" style="max-width: 75%;">
-                      <small class="fw-bold">You</small><br>
-                      {{ chat.question }}
-                    </div>
-                  </div>
-                  <div class="d-flex justify-content-start mt-2">
-                    <div class="bg-light border rounded p-2" style="max-width: 75%;">
-                      <small class="fw-bold">AI</small><br>
-                      {{ chat.answer }}
-                    </div>
-                  </div>
+            {% for chat in chat_history %}
+            <div class="mb-3">
+              <div class="d-flex justify-content-end">
+                <div class="bg-warning text-dark rounded p-2" style="max-width: 75%;">
+                  <small class="fw-bold">You</small><br>
+                  {{ chat.question }}
                 </div>
-              {% endfor %}
+              </div>
+              <div class="d-flex justify-content-start mt-2">
+                <div class="bg-light border rounded p-2" style="max-width: 75%;">
+                  <small class="fw-bold">AI</small><br>
+                  {{ chat.answer }}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
             {% else %}
-              <p class="text-muted text-center mt-5">Start the conversation by asking a PC-related question!</p>
+            <p class="text-muted text-center mt-5">Start the conversation by asking a PC-related question!</p>
             {% endif %}
           </div>
 
           <form method="post" action="{% url 'store:ask_view' %}">
             {% csrf_token %}
             <div class="input-group">
-              <textarea name="question" class="form-control" rows="1" placeholder="Type your question..." required></textarea>
+              <textarea name="question" class="form-control" rows="1" placeholder="Type your question..."
+                required></textarea>
               <button class="btn btn-dark" type="submit">Send</button>
             </div>
           </form>

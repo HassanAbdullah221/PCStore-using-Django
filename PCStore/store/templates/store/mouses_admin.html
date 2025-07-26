@@ -5,75 +5,77 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="text-warning">Manage Mouse</h2>
-        <a href="{% url 'store:add_mouse_view' %}" class="btn btn-warning fw-bold">Add New Mouse</a>
-    </div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-warning">Manage Mouse</h2>
+    <a href="{% url 'store:add_mouse_view' %}" class="btn btn-warning fw-bold">Add New Mouse</a>
+  </div>
 
-    {% if mouses %}
-        <table class="table table-bordered table-hover bg-white">
-            <thead class="table-dark">
-                <tr>
-                    <th class="text-warning">Image</th>
-                    <th class="text-warning">Name</th>
-                    <th class="text-warning">DPI</th>
-                    <th class="text-warning">Connection Type</th>
-                    <th class="text-warning">Price (SAR)</th>
-                    <th class="text-warning">Stock</th>
-                    <th class="text-warning">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for mouse in mouses %}
-                <tr>
-                    <td>
-                        {% if mouse.image %}
-                            <img src="{{ mouse.image.url }}" alt="{{ mouse.name }}" class="img-thumbnail" width="80" height="60">
-                        {% else %}
-                            <span class="text-muted">No image</span>
-                        {% endif %}
-                    </td>
-                    <td>{{ mouse.name }}</td>
-                    <td>{{ mouse.dpi }}</td>
-                    <td>{{ mouse.connection_type }}</td>
-                    <td>{{ mouse.price }}</td>
-                    <td>{{ mouse.stock }}</td>
-                    <td>
-                        <a href="{% url 'store:mouse_detail_view' mouse.id %}" class="btn btn-outline-primary btn-sm">View</a>
-                        <a href="{% url 'store:update_mouse_view' mouse.id %}" class="btn btn-outline-warning btn-sm">Update</a>
+  {% if mouses %}
+  <table class="table table-bordered table-hover bg-white">
+    <thead class="table-dark">
+      <tr>
+        <th class="text-warning">Image</th>
+        <th class="text-warning">Name</th>
+        <th class="text-warning">DPI</th>
+        <th class="text-warning">Connection Type</th>
+        <th class="text-warning">Price (SAR)</th>
+        <th class="text-warning">Stock</th>
+        <th class="text-warning">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mouse in mouses %}
+      <tr>
+        <td>
+          {% if mouse.image %}
+          <img src="{{ mouse.image.url }}" alt="{{ mouse.name }}" class="img-thumbnail" width="80" height="60">
+          {% else %}
+          <span class="text-muted">No image</span>
+          {% endif %}
+        </td>
+        <td>{{ mouse.name }}</td>
+        <td>{{ mouse.dpi }}</td>
+        <td>{{ mouse.connection_type }}</td>
+        <td>{{ mouse.price }}</td>
+        <td>{{ mouse.stock }}</td>
+        <td>
+          <a href="{% url 'store:mouse_detail_view' mouse.id %}" class="btn btn-outline-primary btn-sm">View</a>
+          <a href="{% url 'store:update_mouse_view' mouse.id %}" class="btn btn-outline-warning btn-sm">Update</a>
 
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ mouse.id }}">
-                            Delete
-                        </button>
+          <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+            data-bs-target="#deleteModal{{ mouse.id }}">
+            Delete
+          </button>
 
-                        <div class="modal fade" id="deleteModal{{ mouse.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ mouse.id }}" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <form method="POST" action="{% url 'store:delete_mouse_view' mouse.id %}">
-                                {% csrf_token %}
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="deleteModalLabel{{ mouse.id }}">Delete {{ mouse.name }}</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  Are you sure you want to delete <strong>{{ mouse.name }}</strong>?
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                  <button type="submit" class="btn btn-danger">Delete</button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
+          <div class="modal fade" id="deleteModal{{ mouse.id }}" tabindex="-1"
+            aria-labelledby="deleteModalLabel{{ mouse.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form method="POST" action="{% url 'store:delete_mouse_view' mouse.id %}">
+                  {% csrf_token %}
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel{{ mouse.id }}">Delete {{ mouse.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete <strong>{{ mouse.name }}</strong>?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
 
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p class="text-muted">No Mouse available.</p>
-    {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="text-muted">No Mouse available.</p>
+  {% endif %}
 </div>
 {% endblock %}

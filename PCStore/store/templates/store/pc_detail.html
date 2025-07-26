@@ -7,74 +7,77 @@
 <div class="container mt-5">
 
 
-  <div class="shadow-sm bg-white p-4 rounded">
-    <div class="row align-items-center">
-      <div class="col-md-6 mb-4">
-        <img src="{{ pc.image.url }}" alt="{{ pc.name }}" class="img-fluid rounded shadow-sm">
-      </div>
+    <div class="shadow-sm bg-white p-4 rounded">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4">
+                <img src="{{ pc.image.url }}" alt="{{ pc.name }}" class="img-fluid rounded shadow-sm">
+            </div>
 
-      <div class="col-md-6">
-        <h2 class="fw-bold">{{ pc.name }}</h2>
-        <strong>Category:</strong> {{ pc.category }}<br>
+            <div class="col-md-6">
+                <h2 class="fw-bold">{{ pc.name }}</h2>
+                <strong>Category:</strong> {{ pc.category }}<br>
 
-        <p class="mb-1"><strong>CPU:</strong> {{ pc.cpu }}</p>
-        <p class="mb-1"><strong>GPU:</strong> {{ pc.gpu }}</p>
-        <p class="mb-1"><strong>RAM:</strong> {{ pc.ram }}</p>
-        <p class="mb-1"><strong>Storage:</strong> {{ pc.storage }}</p>
-        <p class="mb-1"><strong>In Stock:</strong> {{ pc.stock }}</p>
+                <p class="mb-1"><strong>CPU:</strong> {{ pc.cpu }}</p>
+                <p class="mb-1"><strong>GPU:</strong> {{ pc.gpu }}</p>
+                <p class="mb-1"><strong>RAM:</strong> {{ pc.ram }}</p>
+                <p class="mb-1"><strong>Storage:</strong> {{ pc.storage }}</p>
+                <p class="mb-1"><strong>In Stock:</strong> {{ pc.stock }}</p>
 
-        <p class="mb-3"><strong>Price:</strong> {{ pc.price }} SAR</p>
-<a href="{% url 'store:add_to_cart' 'PC' pc.id %}" class="btn btn-warning">
-    <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
-</a>
+                <p class="mb-3"><strong>Price:</strong> {{ pc.price }} SAR</p>
+                <a href="{% url 'store:add_to_cart' 'PC' pc.id %}" class="btn btn-warning">
+                    <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
+                </a>
 
-      </div>
+            </div>
 
-    </div>
-    <hr class="my-5">
-    <h4 class="mb-4 text-center text-dark">Comments</h4>
+        </div>
+        <hr class="my-5">
+        <h4 class="mb-4 text-center text-dark">Comments</h4>
 
-    {% if comments %}
-    {% for comment in comments %}
+        {% if comments %}
+        {% for comment in comments %}
         <div class="mb-4 p-3 border rounded bg-white shadow-sm">
             <strong>{{ comment.full_name }}</strong>
             <small class="text-muted d-block">{{ comment.created_at}}</small>
             <p class="mt-2">{{ comment.content }}</p>
         </div>
-    {% endfor %}
-{% else %}
-    <p class="text-dark text-center">No comments yet. Be the first to comment!</p>
-{% endif %}
- <div class="mt-5">
-    <h4 class="text-center text-dark mb-4">Write a Comment</h4>
+        {% endfor %}
+        {% else %}
+        <p class="text-dark text-center">No comments yet. Be the first to comment!</p>
+        {% endif %}
+        <div class="mt-5">
+            <h4 class="text-center text-dark mb-4">Write a Comment</h4>
 
-    <form method="post" action="{% url 'store:pc_comment_view' pc.id %}" class="border rounded p-4 shadow-sm bg-light">
-        {% csrf_token %}
+            <form method="post" action="{% url 'store:pc_comment_view' pc.id %}"
+                class="border rounded p-4 shadow-sm bg-light">
+                {% csrf_token %}
 
-        <div class="mb-3">
-            <label for="full_name" class="form-label">Your Name</label>
-            <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter your name" required>
+                <div class="mb-3">
+                    <label for="full_name" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" id="full_name" name="full_name"
+                        placeholder="Enter your name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">Your Comment</label>
+                    <textarea class="form-control" id="content" name="content" rows="4"
+                        placeholder="Write your comment here..." required></textarea>
+                </div>
+
+                <div class="text-center">
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-dark">Send</button>
+                </div>
+            </form>
         </div>
-
-        <div class="mb-3">
-            <label for="content" class="form-label">Your Comment</label>
-            <textarea class="form-control" id="content" name="content" rows="4" placeholder="Write your comment here..." required></textarea>
-        </div>
-
-        <div class="text-center">
-        </div>
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" class="btn btn-dark">Send</button>
-</div>
-    </form>
-</div>
-  </div>
-
-
-</div>
-
-
     </div>
+
+
+</div>
+
+
+</div>
 </div>
 </div>
 {% endblock %}

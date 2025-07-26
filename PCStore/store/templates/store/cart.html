@@ -10,95 +10,99 @@
     </div>
 
     {% if items %}
-        <table class="table table-bordered table-hover bg-white align-middle">
-            <thead class="table-dark">
-                <tr>
-                    <th class="text-warning">Image</th>
-                    <th class="text-warning">Product</th>
-                    <th class="text-warning">Category</th>
-                    <th class="text-warning">Quantity</th>
-                    <th class="text-warning">Subtotal (SAR)</th>
-                    <th class="text-warning">Price</th>
-                             
+    <table class="table table-bordered table-hover bg-white align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-warning">Image</th>
+                <th class="text-warning">Product</th>
+                <th class="text-warning">Category</th>
+                <th class="text-warning">Quantity</th>
+                <th class="text-warning">Subtotal (SAR)</th>
+                <th class="text-warning">Price</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                <tr>
-                    <td>
-                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 80px; height: auto;" class="img-thumbnail">
-                    </td>
-                    <td>{{ item.product.name }}</td>
-                    <td>{{ item.category }}</td>
-                  
-                        <td>
-    <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
-        <!-- Minus Button -->
-        <form action="{% url 'store:update_cart_quantity' item.category item.product.id %}" method="post" class="d-inline">
-            {% csrf_token %}
-            <input type="hidden" name="change" value="-1">
-            <button type="submit" class="btn btn-sm btn-outline-secondary px-2">−</button>
-        </form>
 
-        <!-- Quantity Display -->
-        <span class="fw-bold">{{ item.quantity }}</span>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                        style="width: 80px; height: auto;" class="img-thumbnail">
+                </td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.category }}</td>
 
-        <!-- Plus Button -->
-        <form action="{% url 'store:update_cart_quantity' item.category item.product.id %}" method="post" class="d-inline">
-            {% csrf_token %}
-            {% if item.quantity < item.product.stock %}
-                <input type="hidden" name="change" value="1">
-                <button type="submit" class="btn btn-sm btn-outline-secondary px-2">+</button>
-            {% else %}
-                <button type="button" class="btn btn-sm btn-outline-secondary px-2" disabled>+</button>
-            {% endif %}
-        </form>
-    </div>
-</td>
-                    <td>{{ item.subtotal }}</td>
-                    <td>
-  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ item.id }}">
-                            Delete
-                        </button>
+                <td>
+                    <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
+                        <!-- Minus Button -->
+                        <form action="{% url 'store:update_cart_quantity' item.category item.product.id %}"
+                            method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="change" value="-1">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary px-2">−</button>
+                        </form>
 
-                        <div class="modal fade" id="deleteModal{{ item.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ item.id }}" aria-hidden="true">
-                          <div class="modal-dialog">
+                        <span class="fw-bold">{{ item.quantity }}</span>
+
+                        <form action="{% url 'store:update_cart_quantity' item.category item.product.id %}"
+                            method="post" class="d-inline">
+                            {% csrf_token %}
+                            {% if item.quantity < item.product.stock %} <input type="hidden" name="change" value="1">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary px-2">+</button>
+                                {% else %}
+                                <button type="button" class="btn btn-sm btn-outline-secondary px-2" disabled>+</button>
+                                {% endif %}
+                        </form>
+                    </div>
+                </td>
+                <td>{{ item.subtotal }}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal{{ item.id }}">
+                        Delete
+                    </button>
+
+                    <div class="modal fade" id="deleteModal{{ item.id }}" tabindex="-1"
+                        aria-labelledby="deleteModalLabel{{ item.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
                             <div class="modal-content">
-                <form method="GET" action="{% url 'store:remove_from_cart' item.category item.product.id %}">
-                                {% csrf_token %}
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="deleteModalLabel{{ item.id }}">Delete {{ item.name}}</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  Are you sure you want to delete <strong>{{ item.name }}</strong>?
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                  <button type="submit" class="btn btn-danger">Delete</button>
-                                </div>
-                              </form>
+                                <form method="GET"
+                                    action="{% url 'store:remove_from_cart' item.category item.product.id %}">
+                                    {% csrf_token %}
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="deleteModalLabel{{ item.id }}">Delete {{
+                                            item.name}}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete <strong>{{ item.name }}</strong>?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </form>
                             </div>
-                          </div>
                         </div>
-                    
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    </div>
 
-        <div class="d-flex justify-content-between align-items-center mt-4">
-            <h4 class="text-white fw-bold">Total: <span class="text-success">{{ total_price }} SAR</span></h4>
-            <a href="{% url 'store:checkout_view' %}" class="btn btn-warning fw-bold">
-                <i class="bi bi-credit-card-fill me-1"></i> Continue to Checkout
-            </a>
-        </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <h4 class="text-white fw-bold">Total: <span class="text-success">{{ total_price }} SAR</span></h4>
+        <a href="{% url 'store:checkout_view' %}" class="btn btn-warning fw-bold">
+            <i class="bi bi-credit-card-fill me-1"></i> Continue to Checkout
+        </a>
+    </div>
     {% else %}
-        <p class="text-white">Your cart is empty.</p>
+    <p class="text-white">Your cart is empty.</p>
     {% endif %}
 </div>
 {% endblock %}
-
-

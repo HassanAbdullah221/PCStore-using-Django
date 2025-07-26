@@ -19,13 +19,13 @@
         <p class="mb-1"><strong>Size:</strong> {{ monitor.size_in_inches }} inch</p>
         <p class="mb-1"><strong>Resolution:</strong> {{ monitor.resolution }}</p>
         <p class="mb-1"><strong>Refresh Rate:</strong> {{ monitor.refresh_rate }} Hz</p>
-               <p class="mb-1"><strong>In Stock:</strong> {{ monitor.stock }}</p>
+        <p class="mb-1"><strong>In Stock:</strong> {{ monitor.stock }}</p>
 
         <p class="mb-3"><strong>Price:</strong> {{ monitor.price }} SAR</p>
         <a href="{% url 'store:add_to_cart' 'Monitor' monitor.id %}" class="btn btn-warning">
-    <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
-</a>
-      </div>    
+          <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
+        </a>
+      </div>
 
     </div>
 
@@ -34,31 +34,31 @@
 
     <div class="row">
       {% if monitors %}
-        {% for monitor in monitors %}
-          <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="card mx-auto shadow-sm" style="width: 18rem;">
-              <img src="{{ monitor.image.url }}" class="card-img-top" alt="{{ monitor.name }}">
-              <div class="card-body">
-                <h5 class="card-title">{{ monitor.name }}</h5>
-                <p class="card-text">
-                  <strong>Category:</strong> {{ monitor.category }}<br>
-                  <strong>Size:</strong> {{ monitor.size_in_inches }} inch<br>
-                  <strong>Resolution:</strong> {{ monitor.resolution }}<br>
-                  <strong>Refresh Rate:</strong> {{ monitor.refresh_rate }} Hz<br>
-                  <strong>Price:</strong> {{ monitor.price }} SAR
-                </p>
-                <div class="d-flex justify-content-center">
-                  <a href="{% url 'store:monitor_detail_view' monitor.id %}" class="btn btn-dark">View Details</a>
-                </div>
-                
-              </div>
-
+      {% for monitor in monitors %}
+      <div class="col-lg-4 col-md-6 col-sm-12 my-3">
+        <div class="card mx-auto shadow-sm" style="width: 18rem;">
+          <img src="{{ monitor.image.url }}" class="card-img-top" alt="{{ monitor.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ monitor.name }}</h5>
+            <p class="card-text">
+              <strong>Category:</strong> {{ monitor.category }}<br>
+              <strong>Size:</strong> {{ monitor.size_in_inches }} inch<br>
+              <strong>Resolution:</strong> {{ monitor.resolution }}<br>
+              <strong>Refresh Rate:</strong> {{ monitor.refresh_rate }} Hz<br>
+              <strong>Price:</strong> {{ monitor.price }} SAR
+            </p>
+            <div class="d-flex justify-content-center">
+              <a href="{% url 'store:monitor_detail_view' monitor.id %}" class="btn btn-dark">View Details</a>
             </div>
-            
+
           </div>
-        {% endfor %}
+
+        </div>
+
+      </div>
+      {% endfor %}
       {% else %}
-        <p class="text-dark text-center">No Monitors available.</p>
+      <p class="text-dark text-center">No Monitors available.</p>
       {% endif %}
     </div>
 
@@ -66,29 +66,32 @@
     <h4 class="mb-4 text-center text-dark">Comments</h4>
 
     {% if comments %}
-      {% for comment in comments %}
-        <div class="mb-4 p-3 border rounded bg-white shadow-sm">
-          <strong>{{ comment.full_name }}</strong>
-          <small class="text-muted d-block">{{ comment.created_at }}</small>
-          <p class="mt-2">{{ comment.content }}</p>
-        </div>
-      {% endfor %}
+    {% for comment in comments %}
+    <div class="mb-4 p-3 border rounded bg-white shadow-sm">
+      <strong>{{ comment.full_name }}</strong>
+      <small class="text-muted d-block">{{ comment.created_at }}</small>
+      <p class="mt-2">{{ comment.content }}</p>
+    </div>
+    {% endfor %}
     {% else %}
-      <p class="text-dark text-center">No comments yet. Be the first to comment!</p>
+    <p class="text-dark text-center">No comments yet. Be the first to comment!</p>
     {% endif %}
 
     <div class="mt-5">
       <h4 class="text-center text-dark mb-4">Write a Comment</h4>
-      <form method="post" action="{% url 'store:monitor_comment_view' monitor.id %}" class="border rounded p-4 shadow-sm bg-light">
+      <form method="post" action="{% url 'store:monitor_comment_view' monitor.id %}"
+        class="border rounded p-4 shadow-sm bg-light">
         {% csrf_token %}
         <div class="mb-3">
           <label for="full_name" class="form-label">Your Name</label>
-          <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter your name" required>
+          <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter your name"
+            required>
         </div>
 
         <div class="mb-3">
           <label for="content" class="form-label">Your Comment</label>
-          <textarea class="form-control" id="content" name="content" rows="4" placeholder="Write your comment here..." required></textarea>
+          <textarea class="form-control" id="content" name="content" rows="4" placeholder="Write your comment here..."
+            required></textarea>
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
