@@ -349,17 +349,9 @@ def keyboard_detail_view(request: HttpRequest , keyboard_id :int):
 
     return render(request, "store/keyboard_detail.html", {"keyboard" : keyboard ,"keyboards" : keyboards , "comments" : comments })
 
-
 def search_view(request):
-    if "category" in request.GET:
-        category = request.GET["category"]
-    else:
-        category = "all"
-
-    if "search" in request.GET:
-        search_query = request.GET["search"]
-    else:
-        search_query = ""
+    category = request.GET.get("category", "all")
+    search_query = request.GET.get("search", "")
 
     pcs = monitors = mouses = chairs = headsets = keyboards = []
 
@@ -404,7 +396,10 @@ def search_view(request):
         "chairs": chairs,
         "headsets": headsets,
         "keyboards": keyboards,
+        "category": category,
+        "search_query": search_query,
     })
+
 
 
 def pc_comment_view(request: HttpRequest , pc_id: int ):

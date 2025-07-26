@@ -27,40 +27,36 @@
 <div class="container mt-5 fade-in">
 
     <div class="d-flex justify-content-center my-5">
-        <img src="{% static 'images/PCStore.png' %}" alt="PC Build" class="img-fluid w-50 my-5"
+        <img src="{% static 'images/PCStore.png' %}" alt="PC Build" class="img-fluid w-25 my-5"
             style="max-width: 100%; height: auto;">
 
     </div>
     <form action="{% url 'store:search_view' %}" method="GET" class="row g-3 align-items-center justify-content-center">
-
-        <div class="col-lg-5 col-md-6 col-sm-12">
-            <div class="input-group">
-                <label class="input-group-text" for="category">Category</label>
-                <select class="form-select" id="category" name="category">
-                    <option value="all" {% if request.GET.category=='all' %} selected {% endif %}>All</option>
-                    <option value="pc" {% if request.GET.category=='pc' %} selected {% endif %}>PC</option>
-                    <option value="monitor" {% if request.GET.category=='monitor' %} selected {% endif %}>Monitor
-                    </option>
-                    <option value="mouse" {% if request.GET.category=='mouse' %} selected {% endif %}>Mouse</option>
-                    <option value="chair" {% if request.GET.category=='chair' %} selected {% endif %}>Chair</option>
-                    <option value="headset" {% if request.GET.category=='headset' %} selected {% endif %}>Headset
-                    </option>
-                    <option value="keyboard" {% if request.GET.category=='keyboard' %} selected {% endif %}>Keyboard
-                    </option>
-                </select>
-            </div>
+    <div class="col-lg-5 col-md-6 col-sm-12">
+        <div class="input-group">
+            <label class="input-group-text" for="category">Category</label>
+            <select class="form-select" id="category" name="category">
+                <option value="all" {% if category == "all" %} selected {% endif %}>All</option>
+                <option value="pc" {% if category == "pc" %} selected {% endif %}>PC</option>
+                <option value="monitor" {% if category == "monitor" %} selected {% endif %}>Monitor</option>
+                <option value="mouse" {% if category == "mouse" %} selected {% endif %}>Mouse</option>
+                <option value="chair" {% if category == "chair" %} selected {% endif %}>Chair</option>
+                <option value="headset" {% if category == "headset" %} selected {% endif %}>Headset</option>
+                <option value="keyboard" {% if category == "keyboard" %} selected {% endif %}>Keyboard</option>
+            </select>
         </div>
+    </div>
 
-        <div class="col-lg-5 col-md-6 col-sm-12">
-            <input type="search" name="search" class="form-control" placeholder="Search..." minlength="1"
-                value="{{ request.GET.search }}">
-        </div>
+    <div class="col-lg-5 col-md-6 col-sm-12">
+        <input type="search" name="search" class="form-control" placeholder="Search..." minlength="1"
+            value="{{ search_query }}">
+    </div>
 
-        <div class="col-lg-2 col-md-4 col-sm-12">
-            <button type="submit" class="btn btn-warning w-100 fw-bold">Search</button>
-        </div>
+    <div class="col-lg-2 col-md-4 col-sm-12">
+        <button type="submit" class="btn btn-warning w-100 fw-bold">Search</button>
+    </div>
+</form>
 
-    </form>
 </div>
 
 {% if pcs or monitors or mouses or chairs or headsets or keyboards %}
@@ -98,8 +94,7 @@
 
 </div>
 {% if monitors %}
-<h2 class=" fw-bold text-warning my-5 fade-in">Monitor Results: <span class="text-white fw-bold ">{{ monitors.count
-        }}</span></h2>
+<h2 class=" fw-bold text-warning my-5 fade-in">Monitor Results: <span class="text-white fw-bold ">{{ monitors.count}}</span></h2>
 
 {% endif %}
 
@@ -133,8 +128,7 @@
 
 
 {% if mouses %}
-<h2 class=" fw-bold text-warning my-5 fade-in">Mouse Results: <span class="text-white fw-bold ">{{ mouses.count
-        }}</span></h2>
+<h2 class=" fw-bold text-warning my-5 fade-in">Mouse Results: <span class="text-white fw-bold ">{{ mouses.count}}</span></h2>
 
 {% endif %}
 
@@ -165,8 +159,7 @@
 </div>
 
 {% if chairs %}
-<h2 class=" fw-bold text-warning my-5 fade-in">Chair Results: <span class="text-white fw-bold ">{{ chairs.count
-        }}</span></h2>
+<h2 class=" fw-bold text-warning my-5 fade-in">Chair Results: <span class="text-white fw-bold ">{{ chairs.count}}</span></h2>
 
 {% endif %}
 
@@ -200,8 +193,7 @@
 </div>
 
 {% if headsets %}
-<h2 class=" fw-bold text-warning my-5 fade-in">Headset Results: <span class="text-white fw-bold ">{{ headsets.count
-        }}</span></h2>
+<h2 class=" fw-bold text-warning my-5 fade-in">Headset Results: <span class="text-white fw-bold ">{{ headsets.count }}</span></h2>
 
 {% endif %}
 
@@ -231,8 +223,7 @@
 </div>
 
 {% if keyboards %}
-<h2 class=" fw-bold text-warning my-5 fade-in">Keyboard Results: <span class="text-white fw-bold ">{{ keyboards.count
-        }}</span></h2>
+<h2 class=" fw-bold text-warning my-5 fade-in">Keyboard Results: <span class="text-white fw-bold ">{{ keyboards.count}}</span></h2>
 
 {% endif %}
 <!-- Keyboards -->
