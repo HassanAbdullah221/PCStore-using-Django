@@ -27,19 +27,15 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="connection_type" class="form-label">Connection Type</label>
-                            <select name="connection_type" id="connection_type" class="form-control" required>
-                                <option value="" disabled>Select connection type</option>
-                                <option value="USB" {% if mouse.connection_type=="USB" %}selected{% endif %}>USB
-                                </option>
-                                <option value="Bluetooth" {% if mouse.connection_type=="Bluetooth" %}selected{% endif
-                                    %}>Bluetooth</option>
-                                <option value="Wireless" {% if mouse.connection_type=="Wireless" %}selected{% endif %}>
-                                    Wireless</option>
-                                <option value="Wired" {% if mouse.connection_type=="Wired" %}selected{% endif %}>Wired
-                                </option>
-                            </select>
-                        </div>
+  <label for="connection_type" class="form-label">Connection Type</label>
+  <select name="connection_type" id="connection_type" class="form-control" required>
+    <option value="" disabled>Select connection type</option>
+    <option value="USB" {% if mouse.connection_type == "USB" %}selected{% endif %}>USB</option>
+    <option value="Wireless" {% if mouse.connection_type == "Wireless" %}selected{% endif %}>Wireless</option>
+    <option value="Bluetooth" {% if mouse.connection_type == "Bluetooth" %}selected{% endif %}>Bluetooth</option>
+  </select>
+</div>
+
 
                         <div class="mb-3">
                             <label for="price" class="form-label">Price (SAR)</label>

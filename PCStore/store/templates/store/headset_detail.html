@@ -21,9 +21,28 @@
         <p class="mb-1"><strong>In Stock:</strong> {{ headset.stock }}</p>
 
         <p class="mb-3"><strong>Price:</strong> {{ headset.price }} SAR</p>
-        <a href="{% url 'store:add_to_cart' 'Headset' headset.id %}" class="btn btn-warning">
-          <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
-        </a>
+      <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#confirmAddToCartModal{{ headset.id }}">
+  <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
+</a>
+
+<div class="modal fade" id="confirmAddToCartModal{{ headset.id }}" tabindex="-1" aria-labelledby="confirmAddToCartLabel{{ headset.id }}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmAddToCartLabel{{ headset.id }}">Confirm Add to Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to add <strong>{{ headset.name }}</strong> to your cart?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url 'store:add_to_cart' 'Headset' headset.id %}" class="btn btn-primary">Yes, Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
 

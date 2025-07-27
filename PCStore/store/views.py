@@ -16,6 +16,7 @@ def add_pc_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_pc.save()
+        messages.success(request, "PC added successfully!")
         return redirect('store:admin_pc_view')
     
     return render(request, "store/add_pc.html")
@@ -65,7 +66,7 @@ def update_pc_view(request: HttpRequest, pc_id: int):
         if "image" in request.FILES : pc.image = request.FILES["image"]
         
         pc.save()
-        
+        messages.success(request, f" PC '{pc.name}' updated successfully!")
         return redirect('store:admin_pc_view' )
     
     return render(request, "store/update_pc.html", {"pc": pc})
@@ -76,6 +77,7 @@ def delete_pc_view(request: HttpRequest , pc_id: int):
     pc = PC.objects.get(pk=pc_id)
 
     pc.delete()
+    messages.success(request, f"PC '{pc.name}' was deleted successfully.")
     return redirect('store:admin_pc_view')
 
 def delete_monitor_view(request: HttpRequest , monitor_id: int):
@@ -83,6 +85,8 @@ def delete_monitor_view(request: HttpRequest , monitor_id: int):
     monitor = Monitor.objects.get(pk=monitor_id)
 
     monitor.delete()
+    messages.success(request, f"Monitor '{monitor.name}' was deleted successfully.")
+
     return redirect('store:admin_monitor_view')
 
 def display_all_view(request: HttpRequest):
@@ -115,6 +119,8 @@ def add_monitor_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_monitor.save()
+        messages.success(request, f"Monitor '{new_monitor.name}' added successfully.")
+
         return redirect('store:admin_monitor_view')
     
     return render(request, "store/add_monitor.html")
@@ -135,6 +141,7 @@ def update_monitor_view(request: HttpRequest, monitor_id: int):
             monitor.image = request.FILES["image"]
         
         monitor.save()
+        messages.success(request, f"Monitor '{monitor.name}' updated successfully.")
 
         return redirect('store:admin_monitor_view')
     
@@ -158,8 +165,9 @@ def add_mouse_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_mouse.save()
+        messages.success(request, f"Mouse '{new_mouse.name}' added successfully.")
         return redirect('store:admin_mouse_view')
-    
+
     return render(request, "store/add_mouse.html")
    
 def delete_mouse_view(request: HttpRequest , mouse_id: int):
@@ -167,6 +175,8 @@ def delete_mouse_view(request: HttpRequest , mouse_id: int):
     mouse = Mouse.objects.get(pk=mouse_id)
 
     mouse.delete()
+    messages.success(request, f"Mouse '{mouse.name}' was deleted successfully.")
+
     return redirect('store:admin_mouse_view')
 
 
@@ -192,7 +202,7 @@ def update_mouse_view(request: HttpRequest, mouse_id: int):
             mouse.image = request.FILES["image"]
         
         mouse.save()
-        
+        messages.success(request, f"Mouse '{mouse.name}' updated successfully.")
         return redirect('store:admin_mouse_view')
     
     return render(request, "store/update_mouse.html", {"mouse": mouse})
@@ -209,6 +219,7 @@ def add_chair_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_chair.save()
+        messages.success(request, f"Chair '{new_chair.name}' added successfully.")
         return redirect('store:admin_chair_view')
 
     return render(request, "store/add_chair.html")
@@ -225,6 +236,8 @@ def delete_chair_view(request: HttpRequest , chair_id: int):
     chair = Chair.objects.get(pk=chair_id)
 
     chair.delete()
+    messages.success(request, f"Chair '{chair.name}' was deleted successfully.")
+
     return redirect('store:admin_chair_view')
 
 def update_chair_view(request: HttpRequest, chair_id: int):
@@ -244,6 +257,8 @@ def update_chair_view(request: HttpRequest, chair_id: int):
             chair.image = request.FILES["image"]
 
         chair.save()
+        messages.success(request, f"Chair '{chair.name}' updated successfully.")
+
         return redirect('store:admin_chair_view')
 
     return render(request, "store/update_chair.html", {"chair": chair})
@@ -259,6 +274,8 @@ def add_headset_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_headset.save()
+        messages.success(request, f"Headset '{new_headset.name}' added successfully.")
+
         return redirect('store:admin_headset_view')
     
     return render(request, "store/add_headset.html")
@@ -275,6 +292,8 @@ def delete_headset_view(request: HttpRequest , headset_id :int):
     headset = Headset.objects.get(pk=headset_id)
 
     headset.delete()
+    messages.success(request, f"Headset '{headset.name}' was deleted successfully.")
+
     return redirect('store:admin_headset_view')
 
 
@@ -295,6 +314,8 @@ def update_headset_view(request: HttpRequest, headset_id: int):
             headset.image = request.FILES["image"]
 
         headset.save()
+        messages.success(request, f"Headset '{headset.name}' updated successfully.")
+
         return redirect('store:admin_headset_view')
 
     return render(request, "store/update_headset.html", {"headset": headset})
@@ -309,6 +330,8 @@ def add_keyboard_view(request: HttpRequest):
             image=request.FILES["image"],
         )
         new_keyboard.save()
+        messages.success(request, f"Keyboard '{new_keyboard.name}' added successfully.")
+
         return redirect('store:admin_keyboard_view')
     
     return render(request, "store/add_keyboard.html")
@@ -330,6 +353,8 @@ def update_keyboard_view(request: HttpRequest, keyboard_id: int):
 
 
         keyboard.save()
+        messages.success(request, f"Keyboard '{keyboard.name}' updated successfully.")
+
         return redirect('store:admin_keyboard_view' )
 
     return render(request, "store/update_keyboard.html", {"keyboard": keyboard})
@@ -339,6 +364,8 @@ def delete_keyboard_view(request: HttpRequest , keyboard_id :int):
     keyboard = Keyboard.objects.get(pk=keyboard_id)
 
     keyboard.delete()
+    messages.success(request, f"Keyboard '{keyboard.name}' was deleted successfully.")
+
     return redirect('store:admin_keyboard_view')
 
 
@@ -632,13 +659,6 @@ def update_cart_quantity(request, category, product_id):
             request.session['cart'] = cart
 
     return redirect('store:cart_view')
-
-from django.shortcuts import render
-from django.shortcuts import render, redirect
-
-from django.shortcuts import render, redirect
-
-from django.shortcuts import render, redirect
 
 def ask_view(request):
     if 'chat_history' not in request.session:

@@ -102,6 +102,4 @@ class Keyboard_comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
-class Cart(models.Model):
-    items = []
 

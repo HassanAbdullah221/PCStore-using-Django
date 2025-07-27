@@ -1,3 +1,4 @@
+from pyexpat.errors import messages
 from django.http import HttpRequest , HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login , logout
@@ -42,7 +43,8 @@ def contact_view(request: HttpRequest):
 
         )
         new_contact.save()
-        return redirect('main:contact_messages_view')
+
+        return redirect('main:contact_view')
 
     return render(request, "main/contact.html" )
 
@@ -56,8 +58,6 @@ def contact_messages_view(request):
 def delete_all_contacts(request):
     Contact.objects.all().delete()
     return redirect("main:contact_messages_view")
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 
 def login_view(request):
     if request.method == 'POST':
@@ -92,3 +92,7 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('main:home_view')
+
+def users_list_view(request):
+    users = User.objects.all().order_by('-date_joined')  
+    return render(request, 'main/display_all_users.html', {'users': users})

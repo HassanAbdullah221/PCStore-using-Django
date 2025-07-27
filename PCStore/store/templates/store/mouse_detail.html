@@ -21,9 +21,28 @@
         <p class="mb-1"><strong>In Stock:</strong> {{ mouse.stock }}</p>
 
         <p class="mb-3"><strong>Price:</strong> {{ mouse.price }} SAR</p>
-        <a href="{% url 'store:add_to_cart' 'Mouse' mouse.id %}" class="btn btn-warning">
-          <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
-        </a>
+       <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#confirmAddToCartModal{{ mouse.id }}">
+        <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
+      </a>
+      <!-- Modal -->
+<div class="modal fade" id="confirmAddToCartModal{{ mouse.id }}" tabindex="-1" aria-labelledby="confirmAddToCartLabel{{ mouse.id }}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmAddToCartLabel{{ mouse.id }}">Confirm Add to Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to add <strong>{{ mouse.name }}</strong> to your cart?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url 'store:add_to_cart' 'Mouse' mouse.id %}" class="btn btn-primary">Yes, Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
 
@@ -44,7 +63,27 @@
               <strong>Price:</strong> {{ mouse.price }} SAR
             </p>
             <div class="d-flex justify-content-center">
-              <a href="{% url 'store:mouse_detail_view' mouse.id %}" class="btn btn-dark">View Details</a>
+<a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#confirmViewDetailsModal{{ mouse.id }}">
+  View Details
+</a>
+
+<div class="modal fade" id="confirmViewDetailsModal{{ mouse.id }}" tabindex="-1" aria-labelledby="confirmViewDetailsLabel{{ mouse.id }}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmViewDetailsLabel{{ mouse.id }}">Confirm View</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Do you want to view details for <strong>{{ mouse.name }}</strong>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url 'store:mouse_detail_view' mouse.id %}" class="btn btn-primary">Yes, View</a>
+      </div>
+    </div>
+  </div>
+</div>
             </div>
           </div>
 
