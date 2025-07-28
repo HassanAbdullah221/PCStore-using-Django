@@ -5,7 +5,8 @@ from django.contrib.auth import authenticate, login , logout
 
 from main.models import *
 from store.models import *
-
+from django.contrib.auth import get_user_model
+User = get_user_model()
 def base_view(request):
     
     

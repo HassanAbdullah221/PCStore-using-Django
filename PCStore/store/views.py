@@ -660,6 +660,8 @@ def update_cart_quantity(request, category, product_id):
 
     return redirect('store:cart_view')
 
+
+
 def ask_view(request):
     if 'chat_history' not in request.session:
         request.session['chat_history'] = []
@@ -731,7 +733,67 @@ def ask_view(request):
 
             (["pc", "computer"], 
              "A PC (Personal Computer) is a machine for work, study, or gaming. "
-             "Choose a PC based on your needs—budget builds for basic use, gaming rigs for performance.")
+             "Choose a PC based on your needs—budget builds for basic use, gaming rigs for performance."),
+            (["1000"], 
+         """Recommended PC Specs:
+Processor: Intel Celeron, Pentium, or AMD Athlon
+RAM: 8 GB DDR4
+Storage: 256 GB SSD (or 128 GB SSD + 1 TB HDD if available)
+Graphics: Integrated (Intel UHD or AMD Radeon Vega)
+OS: Windows 10 or Linux
+Form Factor: Mini PC or used desktop (from trusted source)
+"""),
+            (["2000"], 
+ """Recommended PC Specs:
+Processor: Intel Core i3 (12th/13th Gen) or AMD Ryzen 3 5000 series
+RAM: 8–16 GB DDR4
+Storage: 512 GB SSD (NVMe preferred)
+Graphics: Integrated (Intel UHD 730 / AMD Radeon Vega)
+OS: Windows 10/11
+Form Factor: Entry-level desktop or mini tower with upgrade options
+"""),
+
+(["3000"], 
+ """Recommended PC Specs:
+Processor: Intel Core i5 (12th Gen) or AMD Ryzen 5 5600G
+RAM: 16 GB DDR4
+Storage: 512 GB – 1 TB NVMe SSD
+Graphics: Dedicated GPU (GTX 1650 or AMD RX 6500 XT) or powerful APU (like Ryzen 5 5600G)
+OS: Windows 10/11
+Form Factor: Mid-tower case with room for upgrades and better airflow
+"""),
+
+(["4000"], 
+ """Recommended PC Specs:
+Processor: Intel Core i5-13400F or AMD Ryzen 5 7600
+RAM: 16 GB DDR4 or DDR5 (upgradeable)
+Storage: 1 TB NVMe SSD
+Graphics: NVIDIA RTX 3050 or AMD RX 6600
+OS: Windows 11
+Form Factor: Gaming case with airflow and basic RGB, decent 500–650W PSU (80+ Bronze)
+"""),
+
+(["5000"], 
+ """Recommended PC Specs:
+Processor: Intel Core i5-13600KF or AMD Ryzen 5 7600X
+RAM: 16–32 GB DDR5
+Storage: 1 TB NVMe SSD (Gen 4 preferred)
+Graphics: NVIDIA RTX 3060 Ti or AMD RX 6750 XT
+OS: Windows 11
+Form Factor: Mid or full tower case with good airflow, modular PSU, and cooling options
+"""),
+
+(["6000"], 
+ """Recommended PC Specs:
+Processor: Intel Core i7-13700K or AMD Ryzen 7 7800X3D
+RAM: 32 GB DDR5
+Storage: 1 TB NVMe Gen 4 SSD + optional 2 TB HDD for storage
+Graphics: NVIDIA RTX 4070 or AMD RX 7800 XT
+OS: Windows 11
+Form Factor: Premium case with airflow, 650–750W 80+ Gold PSU, liquid or tower cooling
+""")
+
+
         ]
 
         answer = "Sorry, I don't have an answer for that yet. Try asking about RAM, SSD, GPU, mouse, or gaming chairs."

@@ -1,4 +1,5 @@
 from django.db import models
+from huggingface_hub import User
 
 
 class PC(models.Model):
@@ -9,7 +10,7 @@ class PC(models.Model):
     storage = models.CharField(max_length=100)  
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='PC')
-    image = models.ImageField(upload_to="pc/" , default='images/1.jpeg')
+    image = models.ImageField(upload_to="pc/" )
     stock = models.PositiveIntegerField(default=10)
 
 class Monitor(models.Model):
@@ -20,7 +21,7 @@ class Monitor(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, default='Monitor')
     stock = models.PositiveIntegerField(default=10)
-    image = models.ImageField(upload_to="monitor/", default='images/1.jpeg')
+    image = models.ImageField(upload_to="monitor/")
 
 class Mouse(models.Model):
     name = models.CharField(max_length=100)
@@ -101,5 +102,4 @@ class Keyboard_comment(models.Model):
     full_name = models.CharField(max_length=255)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-
 
