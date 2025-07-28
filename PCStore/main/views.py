@@ -91,8 +91,15 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('main:home_view')
+    return redirect('main:login_view')
 
 def users_list_view(request):
     users = User.objects.all().order_by('-date_joined')  
     return render(request, 'main/display_all_users.html', {'users': users})
+
+
+def profile_view(request):
+
+
+    return render(request, "main/profile.html" , )
+     

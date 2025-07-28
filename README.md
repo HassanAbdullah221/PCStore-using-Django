@@ -1,136 +1,58 @@
-# UNIT-PROJECT-2
+Project Name : PCStore
 
-## Create a Project of your own choosing
+Project Description: 
 
-Base on what you’ve learned until now , create a project of your choosing. Impress us with your creativity and execution.
+PCStore is a modern e-commerce platform designed to streamline the buying and selling of PC-related hardware such as computers, keyboards, headsets, monitors, and chairs. With features for both users and administrators, PCStore offers a smooth shopping experience for customers and comprehensive management tools for store admins.
 
+Features:
 
-## Minimum Requirements
-- Use Django.
-- Use Templates & Template Inheritance.
-- Use static, media & dynamic urls as needed.
-- Organize your project in apps as needed.
-- Use models to represent you data.
-- Use a CSS library to style your website.
-- Must be responsive (good looking of big screens and small screens).
-- Use naming conventions & best practices.
-- Strive to make the user journey intuitive and complete.
+User Features:
 
-## Use python-dotenv to save your sensitive data.
-- https://pypi.org/project/python-dotenv/
+1- Authentication:
+User registration
+User login and logout
 
+2- Browsing & Searching:
+View product categories (PCs, mouses, keyboards, headsets, monitors, chairs)
+Click on a category to view all products within it
+Filter products by category
+Search products by name
 
-## Use a CDN or cloud storage provider to sore your large static files (videos, images, etc.), such as:
-- https://firebase.google.com/docs/storage
+3- Product Interaction:
+View product details
+Add comments to products
 
-## Use Git & Github to manage and track changes in your project.
-- At lease commit and sync the changes once at the end of everyday.
+4- Shopping Cart:
+Add products to cart
+Increase or decrease product quantity in cart
+Remove items from cart
+Continue to checkout and complete payment
 
-## Edit the README.md file to include (include the info at the top):
-- Project Name
-- Project Description
-- Features list.
-- User Stories (link or file)
-- UML (link or file)
-- Wireframe (link or file)
+5- Support & Assistance:
+Contact the store admin for support or inquiries
+Use AI assistance to ask questions about products
 
+Admin Features:
 
-## Example Projects :
+1- Product & Category Management:
+Add new products to any category (PCs, mouses, keyboards, headsets, monitors, chairs)
+Update existing products
+Delete existing products
 
+2- User Management:
+View a list of all registered users
 
-1. **Task Management System:**
-- **Overview:** Create a platform for managing tasks and projects within a team or organization.
-- **Features:**
-- Task creation, assignment, and tracking.
-- Project management with milestones.
-- File uploads and comments on tasks.
-- Notification system for task updates.
+3- Message Management:
+Read and respond to messages sent by users
 
+- User Stories:
+https://docs.google.com/document/d/1lNVX6XDqlXY1z2OPan1geho3aITUPNyvsLQPielMHVE/edit?usp=sharing
 
+- UML: 
+See the file (UML.drawio.png)
 
-
-**Online Learning Platform:**
-
-- **Overview:** Develop a platform for online courses, quizzes, and educational resources.
-- **Features:**
-- Course creation and enrollment.
-- Quiz and assessment functionalities.
-- Progress tracking and certificates.
-
-
-
-
-**Crowdfunding Platform:**
-
-- **Overview:** Build a crowdfunding website where users can create campaigns and seek financial support for their projects.
-- **Features:**
-    -  project history.
-    - Campaign creation and customization.
-    - Payment integration for contributions.
-    - Progress tracking and updates.
-
-**Job Board and Recruitment System:**
-
-- **Overview:** Develop a platform for job seekers and employers to connect.
-- **Features:**
-    - User profiles with resumes.
-    - Job posting and application functionalities.
-    - Search and filter options for jobs.
-    - Employer dashboards for managing postings.
-
-
-**Inventory Management System:**
-
-- **Overview:** Build a system for tracking and managing inventory for businesses.
-- **Features:**
-    - Product catalog with stock levels.
-    - Order processing and tracking.
-    - Reporting and analytics.
-
-
-**Recipe Sharing Platform:**
-
-- **Overview:** Create a platform where users can share and discover recipes.
-- **Features:**
-    - saved recipes.
-    - Recipe creation and editing.
-    - Search and categorization of recipes.
-    - User ratings and reviews.
-      
-## Resources:
-
-**Free high quality images :**
-
-- https://www.pexels.com/
-- https://unsplash.com
-
-**Free sounds website:**
-
-- https://mixkit.co/
-
-**Free stock videos:**
-
-- https://pixabay.com/videos/
-
-**Free Fonts:**
-
-- https://fonts.google.com
-
-**Free Icons**
-
-- https://fonts.google.com/icons
-- https://icons.getbootstrap.com/
-
-**CSS Library:**
-
-- https://getbootstrap.com/
-- https://get.foundation/index.html
-
-**CSS Animation libraries:**
-
-- https://animate.style
-- https://www.minimamente.com/project/magic/
-
+- Wireframe:
+https://www.figma.com/design/yuYD9d7Bg5VvwbqaXB3vKe/PCStore?t=f4pLaxnoo0ADJTjC-1
 
 
  
